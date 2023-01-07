@@ -19,7 +19,7 @@ class ProductManager {
     getProductById = async(id) => { // FUNCIONA
         if (fs.existsSync(`${this.path}dataBase.json`)) {
             const objects = await JSON.parse(fs.readFileSync(`${this.path}dataBase.json`));
-
+            
             let idToSearch = (element) => element.id === id;
             let position = await objects.findIndex(idToSearch);
             if (position == -1) {
