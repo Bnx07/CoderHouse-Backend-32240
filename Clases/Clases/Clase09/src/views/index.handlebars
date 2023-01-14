@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href={{style}}>
+</head>
+<body>
+    <div>
+    <h1>Hola {{user.name}} {{user.lastname}}, bienvenido</h1>
+    <h3>Tienes {{user.age}}, tu numero es {{user.phone}} y tu mail es {{user.mail}}</h3>
+    {{#if isAdmin}}
+    {{#each food}}
+        <div>
+            <p>{{this.name}}</p>
+        </div>
+    {{/each}}
+    {{else}}
+        <p>No tienes permisos</p>
+    {{/if}}
+</div>
+<script src="/js/index.js"></script>
+</body>
+</html>
