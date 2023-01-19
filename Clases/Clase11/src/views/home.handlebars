@@ -1,0 +1,17 @@
+<div>
+    <h1>Welcome to WS</h1>
+</div>
+<div>
+    <input id="chatBox"></input>
+</div>
+<div>
+    <p id="messageLogs"></p>
+</div>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/home.js"></script>
+
+<script>
+    const socket = io.connect('http:localhost:8080/', // Cambiar ubicacion si se sube a glitch.com render.com o railway.app
+    {forceNew: true})
+</script>
