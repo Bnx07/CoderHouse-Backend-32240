@@ -5,11 +5,8 @@ const pm = new ProductManager ("../")
 const router = Router();
 
 router.get('/', async (req, res) => {
-    let products = await pm.getProducts() //.then(console.log(products))
-    res.render('home', {products})
-
-    // res.render('home');
-    
+    let products = await pm.getProducts();
+    res.render('home', {products});
 })
 
 router.get('/realTimeProducts', (req, res) => {

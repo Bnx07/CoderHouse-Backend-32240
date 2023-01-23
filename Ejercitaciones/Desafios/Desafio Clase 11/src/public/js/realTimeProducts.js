@@ -4,27 +4,8 @@ socket.on('products', data => {
     let productZone = document.getElementById('productsList');
     let products = '';
     data.forEach(product => {
-        products = products + `title: ${product.title} ,
-        description: ${product.description} ,
-        code: ${product.code} ,
-        price: ${product.price} ,
-        stock: ${product.stock} ,
-        category: ${product.category} ,
-        thumbnail: ${product.thumbnail} ,
-        id: ${product.id}</br>`
+        products = products + `<div class="product"><div style="display: grid; place-content: center;"><img src="${product.thumbnails}" alt="${product.title}" style="aspect-ratio: 1; width: 200px; object-fit: cover;"/></div><h2>Title: ${product.title}</h2><h2>Price: $${product.price}</h2><p>${product.description}</p></div>`
     })
+    
     productZone.innerHTML = products;
-})
-
-chatBox.addEventListener('keyup', event => {
-    if (event.key === 'Enter') {
-        if (chatBox.value.trim().length > 0) {
-            console.log('Papa');
-            // fetch('/api/products/')
-            // .then(res => res.json())
-            // .then(data => {});
-            socket.emit('products', {id: 0, title: chatBox.value}); // Lo lee, hacer que esto lo hagan los metodos del pm/cm
-            chatBox.value = '';
-        }
-    }
 })
