@@ -1,0 +1,17 @@
+<div>
+    <h1>Products</h1>
+    <h3>But in real time</h3>
+    <div id="productsList">
+
+    </div>
+</div>
+<div>
+    <input id="chatBox"></input>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/realTimeProducts.js"></script>
+
+<script>
+    const socket = io.connect('http:localhost:8080/', // Cambiar ubicacion si se sube a glitch.com render.com o railway.app
+    {forceNew: true})
+</script>
