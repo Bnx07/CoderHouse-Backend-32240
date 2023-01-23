@@ -30,7 +30,6 @@ class ProductManager {
     getProducts = async() => { // FUNCIONA ADAPTADA
         if (fs.existsSync(`${this.path}productos.json`)) { // Si el archivo existe, se lee y añade el dato
             const objects = await JSON.parse(fs.readFileSync(`${this.path}productos.json`, "utf-8"));
-            console.log(objects)
             return objects;
 
         } else { // Si no existe, se crea el archivo con el producto directamente

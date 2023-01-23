@@ -36,6 +36,5 @@ io.on('connection',socket => {
         products.push(data); // Cambiar por posible leida del JSON
         io.emit('products', products);
         console.log(data);
-        console.log(products);
     })
 })
