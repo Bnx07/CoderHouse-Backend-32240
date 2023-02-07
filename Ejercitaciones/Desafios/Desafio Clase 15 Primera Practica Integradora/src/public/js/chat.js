@@ -5,7 +5,7 @@ Swal.fire({
     background: 'rgb(20,20,20)',
     color: 'rgb(180, 180, 180)',
     title: 'Identify yourself',
-    input: 'text',
+    input: 'email',
     text: 'Input your email',
     inputValidator: (value) => {
         return !value && 'You need to input an email';
@@ -46,11 +46,13 @@ socket.on('Messages', data => {
 socket.on('newUserConnected', data => {
     if(!user) return;
     Swal.fire({
-        toast:true,
+        background: 'rgb(20,20,20)',
+        color: 'rgb(180, 180, 180)',
+        toast: true,
         position: 'top-end',
-        showConfirmButton:false,
-        timer:3000,
-        title:`${data} se ha unido al chat`,
-        icon:"success"
+        showConfirmButton: false,
+        timer: 3000,
+        title: `${data} se ha unido al chat`,
+        icon: "success"
     })
 })

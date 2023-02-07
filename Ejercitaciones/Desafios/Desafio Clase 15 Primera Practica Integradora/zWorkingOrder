@@ -1,4 +1,5 @@
-realTimeProducts.js done
+cart funciona
+products funciona
+realTimeProducts funciona
 
-Finalizar views.router.js
-products.routes.js done, finalizar el dbManager (Mirar comentario)
+Queda chat con DB (Chat funciona)

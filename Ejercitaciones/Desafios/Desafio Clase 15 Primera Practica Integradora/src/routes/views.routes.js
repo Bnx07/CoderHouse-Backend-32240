@@ -5,16 +5,15 @@ const pm = new Product();
 const router = Router();
 
 router.get('/', async (req, res) => { // Funciona
-    // let products = [{title: "Papa"}, {title: "Camote"}];
     let products = await pm.getAll();
     res.render('home', {products});
 })
 
-router.get('/realTimeProducts', (req, res) => {
+router.get('/realTimeProducts', (req, res) => { // Funciona
     res.render('realTimeProducts');
 })
 
-router.get('/chat', (req, res) => {
+router.get('/chat', (req, res) => { // Funciona
     res.render('chat');
 })
 

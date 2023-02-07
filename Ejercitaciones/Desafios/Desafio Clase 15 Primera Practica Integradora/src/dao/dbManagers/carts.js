@@ -7,7 +7,12 @@ export default class Cart {
 
     getAll = async() => {
         let carts = await cartModel.find();
-        return carts.map(user => user.toObject());
+        return carts.map(cart => cart.toObject());
+    }
+
+    getOne = async(id) => {
+        let cart = await cartModel.findOne({_id: id});
+        return cart;
     }
 
     createCart = async cart => {
@@ -15,21 +20,13 @@ export default class Cart {
         return result;
     }
 
-    updateCart = async(id) => {
-        let result = await cartModel.updateOne({_id: id}); // Poner todos los campos como ({_id: id}, {campos})
+    updateCart = async(id, cart) => {
+        let result = await cartModel.updateOne({_id: id}, cart);
         return result;
     }
 
     deleteCart = async(id) => {
         let result = await cartModel.deleteOne({_id: id});
         return result;
-    }
-
-    addProductToCart = async(cid, pid) => {
-        console.log("Todavia no existe JAJANT");
-    }
-    
-    removeProductToCart = async(cid, pid) => {
-        console.log("Todavia no existe JAJANT");
     }
 }

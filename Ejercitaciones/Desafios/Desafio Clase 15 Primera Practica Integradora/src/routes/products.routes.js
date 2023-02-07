@@ -1,5 +1,6 @@
 import { Router } from "express";
 import Product from "../dao/dbManagers/products.js";
+import { io } from "../app.js";
 
 const pm = new Product();
 
@@ -28,9 +29,11 @@ router.post('/', async(req, res) => { // Funciona
         const result = await pm.saveProduct(newProduct);
         res.send({status: "Ok", payload: result});
     }
+    let products = await pm.getAll();
+    io.emit('products', products);
 })
 
-router.put('/:pid', async(req, res) => { // Probablemente no funcione por cómo está hecha la función updateProduct
+router.put('/:pid', async(req, res) => { // Funciona
     const id = req.params.pid;
 
     const {title, description, code, price, stock, thumbnails} = req.body;
@@ -45,6 +48,8 @@ router.put('/:pid', async(req, res) => { // Probablemente no funcione por cómo 
 
     let result = await pm.updateProduct(id, newProduct);
     res.send({status: "Ok", payload: result});
+    let products = await pm.getAll();
+    io.emit('products', products);
 })
 
 router.delete('/:pid', async(req, res) => { // Funciona
@@ -52,6 +57,8 @@ router.delete('/:pid', async(req, res) => { // Funciona
 
     let result = await pm.deleteProduct(id);
     res.send({status: "Ok", payload: result});
+    let products = await pm.getAll();
+    io.emit('products', products);
 })
 
 export default router;

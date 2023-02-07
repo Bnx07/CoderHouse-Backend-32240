@@ -76,6 +76,8 @@ h1 {
     width: 90%;
     color: black;
     padding: 5px;
+    background-color: rgb(158, 158, 158);
+    outline: none;
 }
 
 .message {
@@ -89,6 +91,7 @@ h1 {
     border-radius: 10px;
     padding: 5px;
     margin-bottom: 10px;
+    background-color: rgb(58, 58, 58);
 }
 
 .user {

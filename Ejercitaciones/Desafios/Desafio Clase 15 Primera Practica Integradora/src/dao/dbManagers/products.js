@@ -7,7 +7,12 @@ export default class Product {
 
     getAll = async() => {
         let products = await productsModel.find();
-        return products.map(user => user.toObject());
+        return products.map(product => product.toObject());
+    }
+
+    getOne = async(id) => {
+        let product = await productsModel.findOne({_id: id});
+        return product;
     }
 
     saveProduct = async product => {
@@ -15,8 +20,8 @@ export default class Product {
         return result;
     }
 
-    updateProduct = async(id) => {
-        let result = await productsModel.updateOne({_id: id}); // Poner todos los campos como ({_id: id}, {campos})
+    updateProduct = async(id, product) => {
+        let result = await productsModel.updateOne({_id: id}, product);
         return result;
     }
 
