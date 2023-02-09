@@ -1,0 +1,16 @@
+<div>
+    {{#each students}}
+    <div>
+        <h3>{{last_name}}, {{first_name}}</h3>
+    </div>
+    {{/each}}
+    <div>
+        {{#if hasPrevPage}}
+        <a href="/students?page={{prevPage}}">Anterior</a>
+        {{/if}}
+
+        {{#if hasNextPage}}
+        <a href="/students?page={{nextPage}}">Siguiente</a>
+        {{/if}}
+    </div>
+</div>
