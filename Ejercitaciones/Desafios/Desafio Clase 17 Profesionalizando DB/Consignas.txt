@@ -1,0 +1,47 @@
+Utilizar MongoDB como sistema de persistencia de archivos
+Utilizar los endpoints definidos
+Profesionalizar las consultas de productos con filtros, paginación y ordenamientos
+Profesionalizar la gestión de carrito para implementar los últimos conceptos vistos.
+
+Endpoints:
+    productsRouter
+        get 
+            debe contar con 
+                limit (Opc):    Limite de productos por pagina
+                page (Opc):     Pagina
+                sort(Opc):      Ordenar por precio asc o desc
+                query (Opc):    filtros, deben haber por categoría y disponibilidad
+            devuelve
+                status:success/error
+                payload: Resultado de los productos solicitados
+                totalPages: Total de páginas
+                prevPage: Página anterior
+                nextPage: Página siguiente
+                page: Página actual
+                hasPrevPage: Indica si la página previa existe
+                hasNextPage: Indica si la página siguiente existe.
+                prevLink: Link directo a la página previa (null si hasPrevPage=false)
+                nextLink: Link directo a la página siguiente (null si hasNextPage=false)
+
+    cartsRouter el ID de los productos debe ser populate
+        DELETE api/carts/:cid/products/:pid deberá eliminar del carrito el producto seleccionado.
+        PUT api/carts/:cid deberá actualizar el carrito con un arreglo de productos con el formato especificado arriba.
+        PUT api/carts/:cid/products/:pid deberá poder actualizar SÓLO la cantidad de ejemplares del producto por cualquier cantidad pasada desde req.body
+        DELETE api/carts/:cid deberá eliminar todos los productos del carrito
+
+    views /products
+        Cada producto cuenta con su propia página y con un botón para agregar al carrito
+    
+    views /carts/:cid
+        Visualiza el carrito con sus productos
+
+
+
+PENDIENTE
+    Corregir links en products.routes.js
+    Hacer que funcione populate
+    Hacer que funcione cart.routes.js put /:cid
+        Reemplaza el array en vez de añadir
+        Funciona para un objeto solo
+        Añadir que funcione para arrays
+        Añadir que verifique si ya existe en el array
