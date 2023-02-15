@@ -8,11 +8,20 @@ const router = Router();
 
 // MeterLasFuncionesEnUnTryCatchParaQueNoRevienteTodo
 
-router.get('/', async(req, res) => { // Funciona excepto porque los links están deformes al tener ""
+router.get('/', async(req, res) => { // Funciona
     let {limit = 10, page = 1, query = 'none', sort} = req.query;
     let products;
 
     if (query != "none") {
+
+        let replaces = 0; // Reemplazar ' por "
+        for (var i = 0; i < query.length; i++) {
+            if (query[i] == "'") replaces += 1;
+        }
+        for (var i = 0; i < replaces; i ++) {
+            query = query.replace(/'/, '"');
+        }
+
         JSON.parse(query);
         products = await pm.getDeterminate(limit, page, query, sort);
     } else {
@@ -21,9 +30,17 @@ router.get('/', async(req, res) => { // Funciona excepto porque los links están
 
     page = parseInt(page);
     let nextLink, prevLink;
-    let queryString = query.replace(/"/, '%22');
-    (products.hasNextPage == true ) ? nextLink = `http://localhost:8080/api/products/?limit=${limit}&page=${page+1}&query=${queryString}` : nextLink = null;
-    (products.hasPrevPage == true ) ? prevLink = `http://localhost:8080/api/products/?limit=${limit}&page=${page-1}&query=${queryString}` : prevLink = null;
+
+    let invCharacters = 0; // Reemplaza los "" por su equivalente ASCII asi los links son validos
+    for (var i = 0; i < query.length; i++) {
+        if (query[i] == '"') invCharacters += 1;
+    }
+    for (var i = 0; i < invCharacters; i ++) {
+        query = query.replace(/"/, '%22');
+    }
+
+    (products.hasNextPage == true ) ? nextLink = `http://localhost:8080/api/products/?limit=${limit}&page=${page+1}&query=${query}` : nextLink = null;
+    (products.hasPrevPage == true ) ? prevLink = `http://localhost:8080/api/products/?limit=${limit}&page=${page-1}&query=${query}` : prevLink = null;
     
     (!products)?res.status(500).send({status: "Error", error: "No info avaliable"}):res.send({status: "Ok", payload: products.docs, totalPages: products.totalPages, prevPage: products.prevPage, nextPage: products.nextPage, page: products.page, hasPrevPage: products.hasPrevPage, hasNextPage: products.hasNextPage, nextLink: nextLink, prevLink: prevLink});
 })
