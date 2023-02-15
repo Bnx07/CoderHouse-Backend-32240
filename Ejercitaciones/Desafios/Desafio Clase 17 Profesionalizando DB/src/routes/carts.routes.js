@@ -25,61 +25,36 @@ router.post('/', async(req, res) => { // Funciona
     res.send({status: "Ok", payload: result});
 })
 
-router.put('/:cid', async(req, res) => { // Adaptar para que funcione con arrays y modifique la lista de productos en vez de reemplazarla
+router.put('/:cid', async(req, res) => { // Funciona con array
     let cid = req.params.cid;
     let products = req.body;
-    console.log("Products: ")
-    console.log(products);
 
     let cart = await cm.getOne(cid);
     let cartProducts = cart.products;
 
-    cartProducts.push(products);
-    cart.products = cartProducts;
-    console.log(cart)
-    let result = await cm.updateCart(cid, cart)
-    res.send(result)
-})
+    let ids = [];
+    if (cartProducts.length > 0) {
+        cartProducts.forEach(product => {
+            ids.push(product._id);
+        })
+    }
+    
+    products.forEach(async(product) => {
+        const search = (element) => element == product._id
 
-// router.put('/:cid', async(req, res) => { // Rehacer
-//     let products = req.body;
-//     console.log(products)
-//     let cid = req.params.cid;
-//     let cart = await cm.getOne(cid);
-//     console.log(cart);
-//     if (cart == null) return;
-//     let cartProducts = cart.products;
-//     console.log("Initial products: " + cartProducts);
-//     let ids = [];
-//     cartProducts.forEach(product => {
-//         ids.push(product._id);
-//     })
-//     // try {
-//         // if (products.indexOf('[') != 0) {
-//             cartProducts.push(products);
-//         // } else {
-//         //     products.forEach(product => {
-//         //         if (product._id != undefined && product.quantity != undefined) {
-//         //             let valid = ids.findIndex(product._id);
-//         //             console.log(valid);
-//         //             if (valid != -1) {
-//         //                 cartProducts.push(product);
-//         //                 ids.push(product._id);
-//         //                 console.log("Modified products: " + cartProducts);
-//         //             }
-//         //         }
-//         //     })
-//         // }
-//     // } catch {
-//         if (products._id != undefined && products.quantity != undefined) {
-//             cartProducts = [products];
-//         }
-//     // }
-//     cart.products = cartProducts;
-//     console.log("Cart: " + cart)
-//     let result = await cm.updateCart(cid, cart);
-//     res.send(result);
-// })
+        let valid = ids.findIndex(search);
+    
+        if (valid != -1) {
+            cartProducts[valid].quantity = product.quantity;
+        } else {
+            cartProducts.push(product);
+        }
+    })
+
+    cart.products = cartProducts;
+    let result = await cm.updateCart(cid, cart);
+    res.send(result);
+})
 
 router.put('/:cid/product/:pid', async(req, res) => { // Funciona
     let cid = req.params.cid;
