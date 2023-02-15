@@ -38,10 +38,4 @@ Endpoints:
 
 
 PENDIENTE
-    Corregir links en products.routes.js
     Hacer que funcione populate
-    Hacer que funcione cart.routes.js put /:cid
-        Reemplaza el array en vez de añadir
-        Funciona para un objeto solo
-        Añadir que funcione para arrays
-        Añadir que verifique si ya existe en el array
