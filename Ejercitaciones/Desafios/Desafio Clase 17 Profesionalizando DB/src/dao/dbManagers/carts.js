@@ -12,7 +12,6 @@ export default class Cart {
 
     getOne = async(id) => {
         let cart = await cartModel.findOne({_id: id}).lean().populate('products.product');
-        console.log(cart);
         return cart;
     }
 
