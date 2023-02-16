@@ -26,55 +26,65 @@ router.post('/', async(req, res) => { // Funciona
 })
 
 router.put('/:cid', async(req, res) => { // Funciona con array
-    let cid = req.params.cid;
-    let products = req.body;
-
-    let cart = await cm.getOne(cid);
-    let cartProducts = cart.products;
-
-    let ids = [];
-    if (cartProducts.length > 0) {
-        cartProducts.forEach(product => {
-            ids.push(product._id);
+    try {
+        let cid = req.params.cid;
+        let products = req.body;
+    
+        let cart = await cm.getOne(cid);
+        let cartProducts = cart.products;
+    
+        let ids = [];
+        if (cartProducts.length > 0) {
+            cartProducts.forEach(product => {
+                ids.push(product._id);
+            })
+        }
+        
+        products.forEach(async(product) => {
+            const search = (element) => element == product._id
+    
+            let valid = ids.findIndex(search);
+        
+            if (valid != -1) {
+                cartProducts[valid].quantity = product.quantity;
+            } else {
+                cartProducts.push(product);
+            }
         })
+    
+        cart.products = cartProducts;
+        let result = await cm.updateCart(cid, cart);
+        res.send(result);
+    } catch {
+        res.send("The cart ID doesnt exist or you are not sending an array");
     }
     
-    products.forEach(async(product) => {
-        const search = (element) => element == product._id
-
-        let valid = ids.findIndex(search);
-    
-        if (valid != -1) {
-            cartProducts[valid].quantity = product.quantity;
-        } else {
-            cartProducts.push(product);
-        }
-    })
-
-    cart.products = cartProducts;
-    let result = await cm.updateCart(cid, cart);
-    res.send(result);
 })
 
 router.put('/:cid/product/:pid', async(req, res) => { // Funciona
-    let cid = req.params.cid;
-    let pid = req.params.pid;
-    let {quantity} = req.body;
-    
-    let cart = await cm.getOne(cid);
-    let exist = false;
-    cart.products.forEach(product => {
-        if (product._id == pid) {
-            product.quantity = quantity;
-            exist = true
+    try {
+        let cid = req.params.cid;
+        let pid = req.params.pid;
+        let {quantity} = req.body;
+        
+        let cart = await cm.getOne(cid);
+        let exist = false;
+        cart.products.forEach(product => {
+            if (product._id == pid) {
+                product.quantity = quantity;
+                exist = true
+            }
+        })
+        if (exist === true) {
+            let result = await cm.updateCart(cid, cart);
+            res.send({status: "Ok", payload: result});
+        } else {
+            res.send({status: 404, payload: "Product doesnt exist in cart"});
         }
-    })
-    if (exist === true) {
-        let result = await cm.updateCart(cid, cart);
-        res.send({status: "Ok", payload: result});
-    } else {
-        res.send({status: 404, payload: "Product doesnt exist in cart"});
+    } catch {
+        res.send("The product or cart doesnt exist");
     }
+    
     // const id = req.params.cid;
     // let productId = req.params.pid;
 
@@ -107,37 +117,47 @@ router.put('/:cid/product/:pid', async(req, res) => { // Funciona
 })
 
 router.delete('/:cid/product/:pid', async(req, res) => { // Funciona
-    const id = req.params.cid;
-    let productId = req.params.pid;
-
-    let productExist = await pm.getOne(productId);
+    try {
+        const id = req.params.cid;
+        let productId = req.params.pid;
     
-    if (!productExist) {
-        res.send({status: 404, payload: "Product doesnt exist"});
-    } else {
-        let cart = await cm.getOne(id);
-
-        if (!cart) {
-            res.send({status: 404, payload: "Cart doesnt exist"});
+        let productExist = await pm.getOne(productId);
+        
+        if (!productExist) {
+            res.send({status: 404, payload: "Product doesnt exist"});
         } else {
-            let productsInCart = cart.products;
-            let idToSearch = (element) => element.id === productId;
-            if (idToSearch == -1) {
-                res.send({status: 404, payload: "El producto no existe dentro del carrito"});
+            let cart = await cm.getOne(id);
+    
+            if (!cart) {
+                res.send({status: 404, payload: "Cart doesnt exist"});
             } else {
-                let position = productsInCart.findIndex(idToSearch);
-                productsInCart.splice(position, 1);
-                let result = await cm.updateCart(id, cart);
-                res.send({status: "Ok", payload: result});
+                let productsInCart = cart.products;
+                let idToSearch = (element) => element.id === productId;
+                if (idToSearch == -1) {
+                    res.send({status: 404, payload: "El producto no existe dentro del carrito"});
+                } else {
+                    let position = productsInCart.findIndex(idToSearch);
+                    productsInCart.splice(position, 1);
+                    let result = await cm.updateCart(id, cart);
+                    res.send({status: "Ok", payload: result});
+                }
             }
         }
+    } catch {
+        res.send("The product or cart doesnt exist");
+
     }
 })
 
-router.delete('/:cid', async(req, res) => { // Funciona, falta que traiga los productos con populate
-    const id = req.params.cid;
-    let result = await cm.deleteCart(id);
-    res.send({status: "Ok", payload: result});
+router.delete('/:cid', async(req, res) => { // Funciona
+    try {
+        const id = req.params.cid;
+        let result = await cm.deleteCart(id);
+        res.send({status: "Ok", payload: result});
+    } catch {
+        res.send("The cart doesnt exist");
+    }
+    
 })
 
 export default router;
