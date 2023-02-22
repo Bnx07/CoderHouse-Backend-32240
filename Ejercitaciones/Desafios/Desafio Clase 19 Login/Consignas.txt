@@ -1,0 +1,7 @@
+Crear Login
+Debe contar con rutas y views de clase 19
+Una vez se inicia sesion, se manda al home
+Agregar a vista products un mensaje de bienvenida con los datos del usuario
+Agregar sistema de roles admin/user
+Agregar boton de logOut que destruye session y envia a login
+Modificar las rutas para que validen bien los datos
