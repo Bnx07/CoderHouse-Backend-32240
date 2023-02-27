@@ -1,9 +1,5 @@
 import express from 'express';
 import __dirname from './utils.js';
-import mongoose from 'mongoose';
-import { Server } from 'socket.io';
-import session from "express-session";
-import MongoStore from "connect-mongo";
 
 import cartRouter from './routes/carts.routes.js';
 import productRouter from './routes/products.routes.js';
@@ -21,10 +17,7 @@ const pm = new Product();
 mongoose.set("strictQuery", false); // Quita el warning
 
 const app = express();
-const port = 8080;
-
-const connection = mongoose.connect('mongodb+srv://Benjamin:Bastan@codercluster.iwgklyq.mongodb.net/ecommerce?retryWrites=true&w=majority');
-                                                                                            //     /DataBase?
+const port = 8080;                                                                                            //     /DataBase?
 
 app.use(session({
     store: MongoStore.create({

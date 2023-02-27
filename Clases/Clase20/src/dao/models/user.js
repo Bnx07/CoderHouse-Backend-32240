@@ -1,8 +1,8 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-const userCollection = 'users';
+const userCollection = 'Users';
 
-const userSchema = mongoose.Schema({
+const userSchema = new mongoose.Schema({
     first_name: {
         type: String,
         required: true
