@@ -1,4 +1,4 @@
-const form = document.getElementById("recoverForm");
+const form = document.getElementById("registerForm");
 
 form.addEventListener('submit', event => {
 
@@ -11,7 +11,7 @@ form.addEventListener('submit', event => {
         object[key] = value;
     })
     
-    fetch('/api/sessions/recover', {
+    fetch('/api/session/register', {
         method: 'POST',
         body: JSON.stringify(object),
         headers: {

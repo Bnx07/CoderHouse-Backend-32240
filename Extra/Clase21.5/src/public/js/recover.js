@@ -11,7 +11,7 @@ form.addEventListener('submit', event => {
         object[key] = value;
     })
     
-    fetch('/api/sessions/recover', {
+    fetch('/api/session/recover', {
         method: 'POST',
         body: JSON.stringify(object),
         headers: {
