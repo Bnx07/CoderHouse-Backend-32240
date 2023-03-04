@@ -11,7 +11,7 @@ form.addEventListener('submit', event => {
         object[key] = value;
     })
     
-    fetch('/api/sessions/register', {
+    fetch('/api/session/register', {
         method: 'POST',
         body: JSON.stringify(object),
         headers: {

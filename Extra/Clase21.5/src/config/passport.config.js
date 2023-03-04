@@ -40,7 +40,7 @@ const initPassport = () => {
                 done(null, user);
             }
         } catch(error) {
-            return done(error);
+            return done(error); 
         }
     }))
 }

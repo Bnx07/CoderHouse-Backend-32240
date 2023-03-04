@@ -45,8 +45,6 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
 
 app.use('/', viewsRouter);
-// app.use('/api/session', sessionRouter);
-app.use('/api/sessions', sessionRouter);
-
+app.use('/api/session', sessionRouter);
 
 const httpServer = app.listen(port, () => console.log(`Listening on port ${port}`));
