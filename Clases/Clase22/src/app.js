@@ -4,6 +4,7 @@ import passport from "passport";
 import initPassport from "./config/passport.config.js";
 import cookieParser from 'cookie-parser';
 import handlebars from 'express-handlebars';
+import { passportStrategy } from "./utils.js";
 
 import sessionRouter from './routes/session.routes.js';
 import viewsRouter from './routes/views.routes.js';
@@ -28,8 +29,8 @@ app.use(passport.initialize());
 app.use('/', viewsRouter);
 app.use('/api/session', sessionRouter);
 
-app.get('/current', passport.authenticate('jwt', {session: false}), (req, res) => {
+app.get('/current', passportStrategy('jwt'), (req, res) => {
     res.send(req.user);
 })
 
-TIEMPO 1:30 MIN, UNAUTHORIZED
+// TIEMPO 1:30 MIN, UNAUTHORIZED

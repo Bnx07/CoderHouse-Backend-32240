@@ -11,10 +11,9 @@ loginForm.addEventListener("submit", (e) => {
     body: JSON.stringify(data),
     headers: {"Content-type": "application/json"},
   })
-    .then(res => console.log(res))
+    // .then(res => console.log(res))
     // .then(console.log(document.cookie("coderCookieToken")))
-    // .then((res) => res.json())
-    // .then((res) => {
-    //     localStorage.setItem('authToken', res.token);
-    // });
+    .then((res) => {
+        localStorage.setItem('authToken', res.token);
+    }).then(res => console.log("Done"));
 });
