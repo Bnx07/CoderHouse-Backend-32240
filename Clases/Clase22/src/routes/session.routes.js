@@ -1,9 +1,15 @@
 import { Router } from "express";
+import jwt from 'jsonwebtoken';
 
 const router = Router();
 
-router.get('/login', (req, res) => {
-    
-})
+router.post('/login', (req, res) => {
+    const {email, password} = req.body;
+    if (email == "coder@coder.com" && password == "coderpass") {
+        let token = jwt.sign({email, password}, 'coderSecret', {expiresIn: "24h"});
+        // res.send({message: "Logged in succesfully", token: token});
+        res.cookie('coderCookieToken', token, {maxAge: 60*60*24}).send("Logged in");
+    }
+});
 
 export default router
