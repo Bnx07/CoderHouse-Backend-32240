@@ -1,0 +1,3 @@
+Hacer DB managers
+Desarrollar estrategias de passport
+Revisar las rutas, no sé si hacer de vuelta

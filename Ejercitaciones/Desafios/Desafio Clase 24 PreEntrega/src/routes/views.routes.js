@@ -16,7 +16,6 @@ router.get('/home', (req, res) => {
 router.get('/login', (req, res) => res.render('login'));
 
 router.get('/register', (req, res) => {
-    // res.status(503).send("Not found");
     res.render('register');
 })
 
