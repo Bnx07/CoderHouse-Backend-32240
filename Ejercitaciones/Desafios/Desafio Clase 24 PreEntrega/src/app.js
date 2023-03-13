@@ -1,39 +1,44 @@
-import express from "express";
-import handlebars from "express-handlebars";
-import mongoose from "mongoose";
-import passport from "passport";
+import express from 'express';
+import __dirname from './utils.js';
+import mongoose from 'mongoose';
+import session from "express-session";
+import MongoStore from "connect-mongo";
 
-import __dirname from "./utils.js";
-import initPassport from "./config/passport.config.js";
+import cartRouter from './routes/carts.routes.js';
+import productRouter from './routes/products.routes.js';
+import viewsRouter from './routes/views.routes.js';
+import sessionRouter from './routes/session.routes.js';
 
-import viewsRouter from "./routes/views.routes.js";
-import sessionRouter from "./routes/session.routes.js";
-import cartRouter from "./routes/carts.routes.js";
-import productRouter from "./routes/products.routes.js";
+import handlebars from 'express-handlebars';
 
-const port = process.env.port || 8080;
+mongoose.set("strictQuery", false); // Quita el warning
+
 const app = express();
+const port = 8080;                                                                                            //     /DataBase?
 
-mongoose.set('strictQuery', false);
+const connection = mongoose.connect('mongodb+srv://Benjamin:Bastan@codercluster.iwgklyq.mongodb.net/ecommerce?retryWrites=true&w=majority');
+app.use(session({
+    store: MongoStore.create({
+        mongoUrl: 'mongodb+srv://Benjamin:Bastan@codercluster.iwgklyq.mongodb.net/ecommerce?retryWrites=true&w=majority',
+        mongoOptions: {useNewUrlParser: true, useUnifiedTopology: true},
+        ttl: 60 * 5
+    }),
+    secret: "secretCoder",
+    resave: false,
+    saveUnitialized: false
+}))
 
-const connection = mongoose.connect('mongodb+srv://Benjamin:Bastan@codercluster.iwgklyq.mongodb.net/ecommerce?retryWrites=true&w=majority'); // Funciona en test.users
+app.engine('handlebars', handlebars.engine());
+app.set("views", __dirname+"/views");
+app.set("view engine", 'handlebars');
 
-app.use(passport.initialize());
-
-initPassport();
-
-app.engine("handlebars", handlebars.engine());
-
-app.set("views", __dirname + "/views");
-app.set("view engine", "handlebars");
-
+app.use(express.static(__dirname + "/public"));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use(express.static(__dirname + "/public"));
 
-app.use('/', viewsRouter);
-app.use('/api/session', sessionRouter);
-app.use('/api/products', productRouter);
 app.use('/api/carts', cartRouter);
+app.use('/api/products', productRouter);
+app.use('/api/session', sessionRouter);
+app.use('/', viewsRouter);
 
-const httpServer = app.listen(port, () => console.log(`Listening on port ${port}`));
+const httpServer = app.listen(port, () => console.log(`Server listening on port ${port}`));

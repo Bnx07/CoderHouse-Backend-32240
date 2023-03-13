@@ -17,12 +17,21 @@ form.addEventListener('submit', event => {
         headers: {
             'Content-type': 'application/json'
         }
-    }).then(result => {
-        let response = result;
-        console.log(response)
-        if (response.redirected) {
-            location.replace('/login')
+    }).then(
+        result => result.json()).then(json => {
+            if (json.status == 'Ok') {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Account created succesfully'
+                })
+                setTimeout(function() {location.replace('/login');}, 900);
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops, something went wrong',
+                    text: json.error
+                })
+            }
         }
-    })
-    // .then(result => result.json()).then(json => console.log(json));
+    )
 })

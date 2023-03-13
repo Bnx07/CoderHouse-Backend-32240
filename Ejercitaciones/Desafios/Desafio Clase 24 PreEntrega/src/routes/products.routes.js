@@ -65,7 +65,6 @@ router.post('/', async(req, res) => { // Funciona
             const result = await pm.saveProduct(newProduct);
             res.send({status: "Ok", payload: result});
         }
-        let products = await pm.getAll();
     } catch {
         res.send("This method only allows to create one product and the code must be not used");
     }
@@ -87,7 +86,6 @@ router.put('/:pid', async(req, res) => { // Funciona
 
         let result = await pm.updateProduct(id, newProduct);
         res.send({status: "Ok", payload: result});
-        let products = await pm.getAll();
     } catch {
         res.send("The pid doesnt exist");
 }
@@ -99,7 +97,6 @@ router.delete('/:pid', async(req, res) => { // Funciona
 
         let result = await pm.deleteProduct(id);
         res.send({status: "Ok", payload: result});
-        let products = await pm.getAll();
     } catch {
         res.send("The pid doesnt exist");
     }  

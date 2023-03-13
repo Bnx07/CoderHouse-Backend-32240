@@ -17,6 +17,10 @@ header a {
     text-decoration: none;
 }
 
+header a, div {
+    width: 200px;
+}
+
 main {
     display: flex;
     flex-direction: column;
@@ -35,6 +39,7 @@ h1 {
 }
 
 #productsList {
+    width: 80%;
     padding-top: 20px;
     display: flex;
     align-items: center;

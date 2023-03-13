@@ -1,9 +1,9 @@
 import { Router } from "express";
-import Cart from "../dao/dbManagers/carts.js";
+import CartManager from "../dao/dbManagers/carts.js";
 import Product from "../dao/dbManagers/products.js";
 
 const router = Router();
-const cm = new Cart();
+const cm = new CartManager();
 const pm = new Product();
 
 router.get('/', async(req, res) => { // Funciona
@@ -82,36 +82,6 @@ router.put('/:cid/product/:pid', async(req, res) => { // Funciona
     } catch {
         res.send("The product or cart doesnt exist");
     }
-    
-    // const id = req.params.cid;
-    // let productId = req.params.pid;
-
-    // let productExist = await pm.getOne(productId);
-    
-    // if (!productExist) {
-    //     res.send({status: 404, payload: "Product doesnt exist"});
-    // } else {
-    //     let cart = await cm.getOne(id);
-
-    //     if (!cart) {
-    //         res.send({status: 404, payload: "Cart doesnt exist"});
-    //     } else {
-    //         let productsInCart = cart.products.toObject();
-    //         let exists = false;
-    //         productsInCart.forEach(element => {
-    //             if (element.id == productId) {
-    //                 exists = true;
-    //                 element.quantity += 1;
-    //             }
-    //         });
-    //         if (exists !== true) {
-    //             productsInCart.push({id: productId, quantity: 1});
-    //         }
-    //         cart.products = productsInCart;
-    //         let result = await cm.updateCart(id, cart);
-    //         res.send({status: "Ok", payload: result});
-    //     }
-    // }
 })
 
 router.delete('/:cid/product/:pid', async(req, res) => { // Funciona

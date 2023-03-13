@@ -1,8 +1,7 @@
 import productsModel from "../models/products.js";
 
 export default class Product {
-    constructor() {
-    }
+    constructor() {}
 
     getAll = async() => {
         let products = await productsModel.find();

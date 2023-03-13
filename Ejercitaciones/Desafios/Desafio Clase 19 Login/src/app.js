@@ -23,6 +23,7 @@ mongoose.set("strictQuery", false); // Quita el warning
 const app = express();
 const port = 8080;                                                                                            //     /DataBase?
 
+const connection = mongoose.connect('mongodb+srv://Benjamin:Bastan@codercluster.iwgklyq.mongodb.net/ecommerce?retryWrites=true&w=majority');
 app.use(session({
     store: MongoStore.create({
         mongoUrl: 'mongodb+srv://Benjamin:Bastan@codercluster.iwgklyq.mongodb.net/ecommerce?retryWrites=true&w=majority',

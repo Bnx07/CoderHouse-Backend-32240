@@ -10,20 +10,36 @@ form.addEventListener('submit', event => {
     data.forEach((value, key) => {
         object[key] = value;
     })
-    
-    fetch('/api/session/login', {
-        method: 'POST',
-        body: JSON.stringify(object),
-        headers: {
-            'Content-type': 'application/json'
-        }
-    }).then(result => {
-        let response = result;
-        console.log(response)
-        if (response.redirected) {
-            location.replace('/')
-        }
-    })
-    // .then(result => console.log(result)).then(result => console.log("You are being redirected"))
-    // .then(json => console.log(json));
+
+    if (object.email == "" || object.password == "") {
+        Swal.fire({
+            icon: 'error',
+            title: 'Fill all inputs'
+        })
+    } else {
+        fetch('/api/session/login', {
+            method: 'POST',
+            body: JSON.stringify(object),
+            headers: {
+                'Content-type': 'application/json'
+            }
+        }).then(
+            result => result.json()).then(json => {
+                if (json.status == 'Ok') {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Logged in'
+                    })
+                    setTimeout(function() {location.replace('/');}, 900);
+
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops, something went wrong',
+                        text: json.error
+                    })
+                }
+            }
+        )
+    }
 })
