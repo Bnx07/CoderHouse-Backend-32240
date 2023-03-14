@@ -1,11 +1,14 @@
 import passport from "passport";
 import local from "passport-local";
 import userManager from "../dao/dbManagers/users.js";
+import CartManager from '../dao/dbManagers/carts.js';
+
 import {createHash, isValidPassword} from "../utils.js";
 
 import jwt from 'passport-jwt';
 
 const um = new userManager();
+const cm = new CartManager();
 
 const jwtStrategy = jwt.Strategy;
 const extractJwt = jwt.ExtractJwt;
@@ -22,17 +25,19 @@ const initPassport = () => {
         done(null, user);
     });
 
-    passport.use('register', new localStrategy( // En principio actualizado
+    passport.use('register', new localStrategy( // This works
         {passReqToCallback: true, usernameField: 'email'}, async(req, something, username, done) => {
             const {first_name, last_name, age, email, password} = req.body;
             try {
                 let user = await um.findUser({email: email});
+                console.log(user)
                 if (user != null) {
                     console.log("El usuario ya existe");
                     return done(null, false, {status: "Error", message: "El usuario ya existe"});
                 }
 
                 let cartObj = await cm.createCart(); // Puede que rompa por no tener params
+                console.log(cartObj)
 
                 let cart = cartObj._id
 
@@ -54,21 +59,21 @@ const initPassport = () => {
         }
     ))
 
-    passport.use('login', new localStrategy( // Usar JWT
-        {passReqToCallback: true, usernameField: 'email'}, async(req, something, password, done) => {
-            const {email} = req.body;
+    passport.use('login', new localStrategy( // No redirige si está mal
+        {passReqToCallback: true, usernameField: 'email'}, async(req, something, abc, done) => {
+            const {email, password} = req.body;
             try {
                 const user = await um.findUser({email});
                 if (!user) {
                     console.log("El usuario no existe");
-                    return done(null, false);
+                    return done(null, false, {status: "Error", message: "El usuario no existe"});
                 }
 
                 if (!isValidPassword(user, password)) return done(null, false, {status: "Error", message: "La contraseña no es válida"});
 
                 return done(null, user);
             } catch(error) {
-                return done("Oops" + error)
+                return done("Oops" + error);
             }
         }
     ))
@@ -84,6 +89,7 @@ const initPassport = () => {
         secretOrKey: 'coderSecret' // Esta clave era, por error, distinta a la del jwt generator y eso hacía que me tire bad token signature
     }, async(jwt_payload, done) => {
         try {
+            console.log(jwt_payload);
             return done(null, jwt_payload);
         } catch (error) {
             return done(error);

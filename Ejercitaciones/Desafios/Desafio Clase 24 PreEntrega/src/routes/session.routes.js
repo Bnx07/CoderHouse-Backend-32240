@@ -1,59 +1,30 @@
 import { Router } from 'express';
-import userManager from "../dao/dbManagers/users.js";
-import CartManager from '../dao/dbManagers/carts.js';
-import { createHash, isValidPassword } from '../utils.js';
 import jwt from 'jsonwebtoken';
 import passport from 'passport';
 
 const router = Router();
-const um = new userManager();
-const cm = new CartManager();
 
-router.post('/register', async(req, res) => {
-    let {first_name, last_name, age, email, password} = req.body;
+// Tanto login como register rompen cuando ya existe la cuenta porque los parametros devueltos no pueden pasar por el .json()
+// Current no funciona
+// Agregar el isLogin y user al views.routes.js
 
-    if (!first_name || !last_name || !age || !email || !password) return res.send({status: "Error", error: "Some data is missing"});
-
-    const exists = await um.findUser({email});
-
-    if (exists != null) return res.send({status: "Error", error: "The email is already used"});
-
-    let cartObj = await cm.createCart(); // Puede que rompa por no tener params
-
-    let cart = cartObj._id
-
-    password = createHash(password);
-
-    const result = await um.addUser({
-        first_name,
-        last_name,
-        email,
-        age,
-        password,
-        cart
-    })
-    console.log(result)
-
-    return res.status(200).send({status: "Ok", message: result});
+router.post('/register', passport.authenticate('register', {session: false, passReqToCallback: true}), async(req, res) => {
+    return res.status(200).send({status: "Ok", message: req.newUser});
 })
 
-router.post('/login', async(req, res) => {
-    const {email, password} = req.body;
-
-    if (!email || !password) res.send({status: "Error", error: "Some data is missing"});
-
-    const user = await um.findUser({email});
-
-    if (!isValidPassword(user, password)) {
-        return res.send({status: "Error", error: "Password invalid"});
-    }
-
-    if (!user) return res.send({status: "Error", error: "Email invalid"});
-
-    delete user.password;
+router.post('/login', passport.authenticate('login', {session: false, failureRedirect: 'register'}), async(req, res) => {
+    console.log(req.user)
+    const user = {
+        first_name: req.user.first_name,
+        last_name: req.user.last_name,
+        role: req.user.role,
+        email: req.user.email,
+        cart: req.user.cart
+    };
+    console.log(user);
 
     let token = jwt.sign({user}, 'coderSecret', {expiresIn: "24h"});
-    return res.cookie('coderCookieToken', token, {maxAge: 60*60*24}).send({status: "Ok", message: "Logged in"});
+    return res.cookie('coderCookieToken', token, {maxAge: 60*60*24, httpOnly: true}).send({status: "Ok", message: "Logged in", payload: user});
 })
 
 router.post('/logout', async(req, res) => {

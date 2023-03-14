@@ -1,5 +1,3 @@
 Desarrollar estrategias de passport // En parte, falta JWT
 Aplicar passport a rutas // Falta desarrollar estrategias
-Usar JWT
 Crear current
-Modificar ruta de carrito para que sea /:user/cart/:cart así se verifica que sea el usuario correcto

@@ -125,7 +125,6 @@ router.delete('/:cid', async(req, res) => { // Funciona
     } catch {
         res.send("The cart doesnt exist");
     }
-    
 })
 
 export default router;

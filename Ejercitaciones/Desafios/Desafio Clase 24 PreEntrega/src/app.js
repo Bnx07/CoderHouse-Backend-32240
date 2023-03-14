@@ -19,16 +19,6 @@ const app = express();
 const port = 8080;                                                                          //     /DataBase?
 
 const connection = mongoose.connect('mongodb+srv://Benjamin:Bastan@codercluster.iwgklyq.mongodb.net/ecommerce?retryWrites=true&w=majority');
-app.use(session({
-    store: MongoStore.create({
-        mongoUrl: 'mongodb+srv://Benjamin:Bastan@codercluster.iwgklyq.mongodb.net/ecommerce?retryWrites=true&w=majority',
-        mongoOptions: {useNewUrlParser: true, useUnifiedTopology: true},
-        ttl: 60 * 5
-    }),
-    secret: "secretCoder",
-    resave: false,
-    saveUnitialized: false
-}))
 
 initPassport();
 app.use(passport.initialize());
