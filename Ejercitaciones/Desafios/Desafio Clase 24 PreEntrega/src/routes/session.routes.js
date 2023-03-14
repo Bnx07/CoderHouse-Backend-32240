@@ -2,6 +2,8 @@ import { Router } from 'express';
 import userManager from "../dao/dbManagers/users.js";
 import CartManager from '../dao/dbManagers/carts.js';
 import { createHash, isValidPassword } from '../utils.js';
+import jwt from 'jsonwebtoken';
+import passport from 'passport';
 
 const router = Router();
 const um = new userManager();
@@ -48,27 +50,10 @@ router.post('/login', async(req, res) => {
 
     if (!user) return res.send({status: "Error", error: "Email invalid"});
 
-    if (user.email == "adminCoder@coder.com") {
-        req.session.user = {
-            id: user._id,
-            email: user.email,
-            first_name: user.first_name,
-            last_name: user.last_name,
-            cart: user.cart,
-            role: 'admin'
-        }
-    } else {
-        req.session.user = {
-            id: user._id,
-            email: user.email,
-            first_name: user.first_name,
-            last_name: user.last_name,
-            cart: user.cart,
-            role: 'user'
-        }
-    }
+    delete user.password;
 
-    res.status(200).send({status: "Ok", message: "Logged in"})
+    let token = jwt.sign({user}, 'coderSecret', {expiresIn: "24h"});
+    return res.cookie('coderCookieToken', token, {maxAge: 60*60*24}).send({status: "Ok", message: "Logged in"});
 })
 
 router.post('/logout', async(req, res) => {
@@ -81,5 +66,9 @@ router.post('/logout', async(req, res) => {
         }
     })
 })
+
+router.get('/current', passport.authenticate('jwt'), (req, res) => {
+    res.send(req.user);
+});
 
 export default router;

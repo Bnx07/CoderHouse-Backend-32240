@@ -15,4 +15,4 @@ router.post('/login', (req, res) => {
     res.send("Try using coder@coder.com coderpass");
 });
 
-export default router
+export default router;

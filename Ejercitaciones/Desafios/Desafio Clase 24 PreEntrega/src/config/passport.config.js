@@ -1,10 +1,11 @@
 import passport from "passport";
 import local from "passport-local";
-import userModel from "../dao/models/user.js";
+import userManager from "../dao/dbManagers/users.js";
 import {createHash, isValidPassword} from "../utils.js";
 
-import passport from "passport";
 import jwt from 'passport-jwt';
+
+const um = new userManager();
 
 const jwtStrategy = jwt.Strategy;
 const extractJwt = jwt.ExtractJwt;
@@ -17,7 +18,7 @@ const initPassport = () => {
     });
 
     passport.deserializeUser(async(id, done) => {
-        let user = await userModel.findById(id)
+        let user = await um.findUser({_id: id})
         done(null, user);
     });
 
@@ -25,7 +26,7 @@ const initPassport = () => {
         {passReqToCallback: true, usernameField: 'email'}, async(req, something, username, done) => {
             const {first_name, last_name, age, email, password} = req.body;
             try {
-                let user = await userModel.findOne({email: email});
+                let user = await um.findUser({email: email});
                 if (user != null) {
                     console.log("El usuario ya existe");
                     return done(null, false, {status: "Error", message: "El usuario ya existe"});
@@ -44,7 +45,7 @@ const initPassport = () => {
                     cart
                 }
 
-                let newUser = await userModel.create(result);
+                let newUser = await um.addUser(result);
 
                 return done(null, newUser);
             } catch(error) {
@@ -57,7 +58,7 @@ const initPassport = () => {
         {passReqToCallback: true, usernameField: 'email'}, async(req, something, password, done) => {
             const {email} = req.body;
             try {
-                const user = await userModel.findOne({email});
+                const user = await um.findUser({email});
                 if (!user) {
                     console.log("El usuario no existe");
                     return done(null, false);
@@ -83,10 +84,11 @@ const initPassport = () => {
         secretOrKey: 'coderSecret' // Esta clave era, por error, distinta a la del jwt generator y eso hacía que me tire bad token signature
     }, async(jwt_payload, done) => {
         try {
-            return done(null, jwt_payload)
+            return done(null, jwt_payload);
         } catch (error) {
             return done(error);
         }
+        
     }
     ));
 }

@@ -23,23 +23,23 @@ form.addEventListener('submit', event => {
             headers: {
                 'Content-type': 'application/json'
             }
-        }).then(
-            result => result.json()).then(json => {
-                if (json.status == 'Ok') {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Logged in'
-                    })
-                    setTimeout(function() {location.replace('/');}, 900);
+        }).then(res => localStorage.setItem('authToken', res.token)).then(setTimeout(function() {location.replace('/');}, 900))
+        //     .then(json => {
+        //         if (json.status == 'Ok') {
+        //             Swal.fire({
+        //                 icon: 'success',
+        //                 title: 'Logged in'
+        //             })
+        //             setTimeout(function() {location.replace('/');}, 900);
 
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops, something went wrong',
-                        text: json.error
-                    })
-                }
-            }
-        )
+        //         } else {
+        //             Swal.fire({
+        //                 icon: 'error',
+        //                 title: 'Oops, something went wrong',
+        //                 text: json.error
+        //             })
+        //         }
+        //     }
+        // )
     }
 })
