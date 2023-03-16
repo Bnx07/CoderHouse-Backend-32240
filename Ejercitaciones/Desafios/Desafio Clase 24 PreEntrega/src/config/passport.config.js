@@ -30,14 +30,12 @@ const initPassport = () => {
             const {first_name, last_name, age, email, password} = req.body;
             try {
                 let user = await um.findUser({email: email});
-                console.log(user)
                 if (user != null) {
                     console.log("El usuario ya existe");
                     return done(null, false, {status: "Error", message: "El usuario ya existe"});
                 }
 
                 let cartObj = await cm.createCart(); // Puede que rompa por no tener params
-                console.log(cartObj)
 
                 let cart = cartObj._id
 
@@ -89,12 +87,10 @@ const initPassport = () => {
         secretOrKey: 'coderSecret' // Esta clave era, por error, distinta a la del jwt generator y eso hacía que me tire bad token signature
     }, async(jwt_payload, done) => {
         try {
-            console.log(jwt_payload);
             return done(null, jwt_payload);
         } catch (error) {
             return done(error);
         }
-        
     }
     ));
 }

@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import session from "express-session";
 import MongoStore from "connect-mongo";
 import passport from 'passport';
+import cookieParser from 'cookie-parser'
 
 import initPassport from './config/passport.config.js';
 import cartRouter from './routes/carts.routes.js';
@@ -20,6 +21,7 @@ const port = 8080;                                                              
 
 const connection = mongoose.connect('mongodb+srv://Benjamin:Bastan@codercluster.iwgklyq.mongodb.net/ecommerce?retryWrites=true&w=majority');
 
+app.use(cookieParser());
 initPassport();
 app.use(passport.initialize());
 

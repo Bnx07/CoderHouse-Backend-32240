@@ -23,6 +23,6 @@ const closeSession = async() => {
     })
 
     setTimeout(function() {
-        location.replace('/');
+        location.replace('/login');
     }, 900);
 }

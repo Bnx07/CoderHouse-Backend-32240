@@ -1,3 +1,0 @@
-Desarrollar estrategias de passport // En parte, falta JWT
-Aplicar passport a rutas // Falta desarrollar estrategias
-Crear current
