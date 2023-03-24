@@ -1,0 +1,6 @@
+Aplicar capas del proyecto:
+    routing (Router sin lógica)
+    controlador (No recuerdo)
+    dao (Bases de datos)
+    vistas (Vistas XDn't)
+Usar .env para variables de entorno
