@@ -1,6 +1,7 @@
 Aplicar capas del proyecto:
-    routing (Router sin lógica)
+    routing (Router sin lógica) router.get('/example', controller.example)
     controlador (No recuerdo)
     dao (Bases de datos)
     vistas (Vistas XDn't)
 Usar .env para variables de entorno
+Normalizar res.send

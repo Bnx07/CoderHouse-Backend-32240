@@ -1,7 +1,5 @@
-let cart;
 let pid = document.getElementById('pid').innerHTML;
-
-alert("Usa JWT y hace que saque de ahi el CartID");
+let cart = document.getElementById('cartId').innerHTML;
 
 // Swal.fire({
 //     background: 'rgb(20,20,20)',

@@ -10,6 +10,8 @@ import productRouter from './routes/products.routes.js';
 import viewsRouter from './routes/views.routes.js';
 import sessionRouter from './routes/session.routes.js';
 
+import config from './config/config.js';
+
 import handlebars from 'express-handlebars';
 
 mongoose.set("strictQuery", false); // Quita el warning
@@ -17,7 +19,7 @@ mongoose.set("strictQuery", false); // Quita el warning
 const app = express();
 const port = 8080;                                                                          //     /DataBase?
 
-const connection = mongoose.connect('mongodb+srv://Benjamin:Bastan@codercluster.iwgklyq.mongodb.net/ecommerce?retryWrites=true&w=majority');
+const connection = mongoose.connect(config.connection);
 
 app.use(cookieParser());
 initPassport();

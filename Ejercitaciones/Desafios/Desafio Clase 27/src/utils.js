@@ -4,9 +4,7 @@ import bcrypt from 'bcrypt';
 
 import config from './config/config.js';
 
-// const PRIVATE_KEY = "CoderKeyMuySecret";
-
-export const createHash = password => bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+export const createHash = password => bcrypt.hashSync(password, bcrypt.genSaltSync(config.bcryptGenSalt));
 // Irreversible
 
 export const isValidPassword = (user, password) => bcrypt.compareSync(password, user.password);
