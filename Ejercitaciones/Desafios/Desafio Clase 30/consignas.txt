@@ -17,8 +17,9 @@ Aplicar ruta /:cid/purchase que revisa stock y formaliza la transaccion, crear t
 PARA HOY:
     1   Done
     3   Done
-    4   Done (A medias, connection no funciona)
-    5   A medias, no funciona connection, error de linea 20
-    9   
+    4   Done
+    5   Done
+    7   En progreso
+    9   Primero necesito 7
     14
     15

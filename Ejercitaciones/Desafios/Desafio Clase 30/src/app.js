@@ -3,6 +3,7 @@ import __dirname from './utils.js';
 import mongoose from 'mongoose';
 import passport from 'passport';
 import cookieParser from 'cookie-parser';
+import handlebars from 'express-handlebars';
 
 import initPassport from './config/passport.config.js';
 import cartRouter from './routes/carts.routes.js';
@@ -11,15 +12,14 @@ import viewsRouter from './routes/views.routes.js';
 import sessionRouter from './routes/session.routes.js';
 
 import config from './config/config.js';
-
-import handlebars from 'express-handlebars';
+import { connection } from './dao/factory.js';
 
 mongoose.set("strictQuery", false); // Quita el warning
 
 const app = express();
 const port = 8080;                                                                          
 
-const connection = mongoose.connect(config.connection);
+// const connection = mongoose.connect(config.connection);
 
 app.use(cookieParser());
 initPassport();

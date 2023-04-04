@@ -1,11 +1,11 @@
 import config from "../config/config.js";
 import mongoose from 'mongoose';
 
-export let users, carts, products;
+export let users, carts, products, connection;
 
 switch (config.persistence) {
     case "MONGO":
-        const connection = mongoose.connect(config.connection);
+        connection = mongoose.connect(config.connection);
         users = await import('./dbManagers/users.js');
         carts = await import('./dbManagers/carts.js');
         products = await import('./dbManagers/products.js');
