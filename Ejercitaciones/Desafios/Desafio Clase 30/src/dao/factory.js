@@ -1,10 +1,17 @@
 import config from "../config/config.js";
 import mongoose from 'mongoose';
 
-let users, products, carts;
+export let users, carts, products;
 
 switch (config.persistence) {
     case "MONGO":
-        const connection = mongoose.connect('mongodb+srv://Benjamin:Bastan@codercluster.iwgklyq.mongodb.net/ecommerce?retryWrites=true&w=majority');
+        const connection = mongoose.connect(config.connection);
+        users = await import('./dbManagers/users.js');
+        carts = await import('./dbManagers/carts.js');
+        products = await import('./dbManagers/products.js');
+        break;
     case "MEMORY":
+        products = await import('./memory/products.js');
+        console.log("I have my PC freezed, so there is no memory");
+        break;
 }

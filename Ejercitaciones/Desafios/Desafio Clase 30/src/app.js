@@ -1,57 +1,41 @@
 import express from 'express';
-import nodemailer from 'nodemailer';
-import twilio from 'twilio';
-import { __dirname } from './utils.js'
+import __dirname from './utils.js';
+import mongoose from 'mongoose';
+import passport from 'passport';
+import cookieParser from 'cookie-parser';
+
+import initPassport from './config/passport.config.js';
+import cartRouter from './routes/carts.routes.js';
+import productRouter from './routes/products.routes.js';
+import viewsRouter from './routes/views.routes.js';
+import sessionRouter from './routes/session.routes.js';
+
+import config from './config/config.js';
+
+import handlebars from 'express-handlebars';
+
+mongoose.set("strictQuery", false); // Quita el warning
 
 const app = express();
+const port = 8080;                                                                          
 
-const transport = nodemailer.createTransport({
-    service: 'gmail',
-    port: 587,
-    auth: {
-        user: 'benjabastan@gmail.com',
-        pass: 'uodgaaewnbtwfhbm'
-    }
-})
+const connection = mongoose.connect(config.connection);
 
-const twilioAccountSid = 'ACdf6ce642e3e445af6731191fad63fa03';
-const twilioToken = 'e638d8570e7aa31bfd38f5c94b5201e9';
-const twilioSmsNumber = '+15856561832';
+app.use(cookieParser());
+initPassport();
+app.use(passport.initialize());
 
-const client = twilio(twilioAccountSid, twilioToken);
+app.engine('handlebars', handlebars.engine());
+app.set("views", __dirname+"/views");
+app.set("view engine", 'handlebars');
 
-app.get('/mail', async(req, res) => {
-    await transport.sendMail({
-        from: 'benjabastan@gmail.com',
-        to: 'benjabastan@gmail.com',
-        subject: 'Se ha creado una cuenta en Ecommerce Coder',
-        html: `
-        <div style="background-color: black; color: green; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <h1>Bienvenido a Ecommerce Coder</h1>
-            <img style="width: 60%" src="cid:welcomeMandala"/>
-        </div>
-        `,
-        attachments: [{
-            filename: 'welcome.jpg',
-            path:__dirname+'/images/welcome.jpg',
-            cid: 'welcomeMandala'
-        }, {
-            filename: 'contract.txt',
-            path: __dirname+'/images/contract.txt',
-            cid: 'contract'
-        }] // Manda imagenes
-    })
-    res.send({status: "Ok", message: "Email enviado"});
-})
+app.use(express.static(__dirname + "/public"));
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
-app.get('/wpp', async(req, res) => {
-    let result = await client.messages.create({
-        body: "Haz click en este link y gana un iPhone XIX GRATIS https://guthib.com",
-        from: twilioSmsNumber,
-        to: "+542236908060"
-    })
+app.use('/api/carts', cartRouter);
+app.use('/api/products', productRouter);
+app.use('/api/session', sessionRouter);
+app.use('/', viewsRouter);
 
-    res.send({status: "Ok", message: "Mensaje enviado"})
-})
-
-app.listen(8080, () => console.log("Working on port 8080"));
+const httpServer = app.listen(port, () => console.log(`Server listening on port ${port}`));
