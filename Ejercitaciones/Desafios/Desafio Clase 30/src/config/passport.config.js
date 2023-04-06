@@ -88,10 +88,14 @@ const initPassport = () => {
 
     passport.use('jwt', new jwtStrategy({
         jwtFromRequest:extractJwt.fromExtractors([cookieExtractor]), // Recibe la cookie y extrae el token
-        secretOrKey: config.jwtKey // Esta clave era, por error, distinta a la del jwt generator y eso hacía que me tire bad token signature
+        secretOrKey: config.jwtKey
     }, async(jwt_payload, done) => {
         try {
-            return done(null, jwt_payload);
+            if (!jwt_payload) {
+                return done();
+            } else {
+                return done(null, jwt_payload);
+            }
         } catch (error) {
             return done(error);
         }

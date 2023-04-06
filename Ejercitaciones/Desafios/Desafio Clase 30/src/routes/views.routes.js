@@ -7,17 +7,25 @@ import ViewController from "../controller/views.controller.js";
 const router = Router();
 const vc = new ViewController();
 
-router.get('/', passport.authenticate('jwt', {session: false}), vc.get)
+router.get('/', passport.authenticate('jwt', {session: false}), vc.get);
 
-router.get('/carts/:cid', passport.authenticate('jwt', {session: false}), vc.getCart)
+router.get('/carts/:cid', passport.authenticate('jwt', {session: false}), vc.getCart);
 
-router.get('/product/:pid', passport.authenticate('jwt', {session: false}), vc.getProduct)
+router.get('/product/:pid', passport.authenticate('jwt', {session: false}), vc.getProduct);
 
-router.get('/register', vc.getRegister)
+router.get('/register', vc.getRegister);
 
-router.get('/login', vc.getLogin)
+router.get('/login', vc.getLogin);
 
-router.get('/user', passport.authenticate('jwt', {session: false}), vc.getUser)
+router.get('/user', passport.authenticate('jwt', {session: false}), vc.getUser);
+
+router.get('/chat', passport.authenticate('jwt', {session: false}), vc.getChat);
+
+router.get('/test', (req, res) => {
+    if (!req.cookies.coderCookieToken) console.log("Hi");
+    res.send("Hi");
+    // Tengo que quitarla
+})
 
 router.get('*', vc.getAll)
 

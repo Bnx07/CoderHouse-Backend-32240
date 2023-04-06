@@ -1,14 +1,15 @@
 <link rel="stylesheet" href="css/styles.css">
 <header>
-  <a href="/">Home</a>
-  <h1>Products</h1>
-  <div>
-    {{#if isLogin}}
-      <a href="/user">Bienvenido {{user.first_name}} {{user.last_name}}</a>
-    {{else}}
-      <a href="/login">Inicia sesión aquí</a>
-    {{/if}}
-  </div>
+    <a href="/">Home</a>
+    <h1>Products</h1>
+    <div>
+        {{#if isLogin}}
+            <a href="/carts/{{user.cart}}"><i class="fa-solid fa-cart-shopping" style="color: white"></i></a>
+            <a href="/user">Bienvenido {{user.first_name}} {{user.last_name}}</a>
+        {{else}}
+            <a href="/login">Inicia sesión aquí</a>
+        {{/if}}
+    </div>
   
 </header>
 <main>

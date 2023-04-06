@@ -8,9 +8,9 @@ Aplicar DTO
 Aplicar patrón repository
 Modificar ruta current para no enviar información sensible, enviar DTO del usuario
 Realizar middleware que trabaje en conjunto con la estrategia current para hacer sistema de autorización y delimitar endpoints:
-    Solo los administradores pueden crear, actualizar y eliminar productos
-    Solo usuarios pueden enviar mensajes al chat
-    Solo el usuario puede agregar productos a su carrito
+    Solo los administradores pueden crear, actualizar y eliminar productos  Si
+    Solo usuarios pueden enviar mensajes al chat 
+    Solo el usuario puede agregar productos a su carrito Si
 Crear modelo ticket con todas las formalizaciones del pago
 Aplicar ruta /:cid/purchase que revisa stock y formaliza la transaccion, crear ticket y devolver al carrito los productos que no se pudieron agregar
 
@@ -19,7 +19,10 @@ PARA HOY:
     3   Done
     4   Done
     5   Done
-    7   En progreso
-    9   Primero necesito 7
-    14
-    15
+    6   Done
+    7   Done
+    8   Mismo que factory pero para memory, pero no entiendo 
+    9   Done
+    10  Done En chat el texto nunca es texto, no sé por qué
+    14  Done
+    15  Done

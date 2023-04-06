@@ -1,11 +1,14 @@
 import jwt from 'jsonwebtoken';
+import Dto from '../dao/dto/dto.js';
 
 import config from '../config/config.js';
 import { transport } from '../utils.js';
 
+const dto = new Dto;
+
 export default class SessionController {
     getCurrent = async(req, res) => {
-        res.send(req.user);
+        res.send(dto.getCurrent(req.user.user));
     }
 
     getFailedLogin = async(req, res) => {

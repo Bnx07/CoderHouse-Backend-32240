@@ -1,5 +1,6 @@
 import { Router } from "express";
 import ProductController from "../controller/products.controller.js";
+import { isAdmin } from "../middlewares/isAdmin.js";
 
 const pc = new ProductController();
 
@@ -7,10 +8,10 @@ const router = Router();
 
 router.get('/', pc.get)
 
-router.post('/', pc.post)
+router.post('/', isAdmin, pc.post)
 
-router.put('/:pid', pc.put)
+router.put('/:pid', isAdmin, pc.put)
 
-router.delete('/:pid', pc.delete)
+router.delete('/:pid', isAdmin, pc.delete)
 
 export default router;

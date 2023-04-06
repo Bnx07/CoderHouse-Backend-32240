@@ -35,12 +35,12 @@ export default class ViewController {
     }
 
     getCart = async(req, res) => {
-        let {cid} = req.params.cid;
+        let cid = req.params.cid;
         try {
             const isLogin = req.user.user ? true : false;
             const user = req.user.user;
             let cart = await cm.getOne(cid);
-            res.render('carts', {cart, isLogin, user});
+            res.render('carts', {cart, isLogin, user}); // Hacer que renderice los productos y tengas el carts/purchase
         } catch {
             res.render('error');
         }
@@ -80,6 +80,12 @@ export default class ViewController {
         }
     
         res.render('user', {user, isAdmin})
+    }
+
+    getChat = (req, res) => {
+        let user = req.user.user;
+        console.log(user)
+        res.render('chat', {user});
     }
 
     getAll = (req, res) => {

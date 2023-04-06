@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="css/styles.css">
+<header>
+    <a href="/">Home</a>
+    <h1>Products</h1>
+    <div>
+        {{#if isLogin}}
+            <a href="/carts/{{user.cart}}"><i class="fa-solid fa-cart-shopping" style="color: white"></i></a>
+            <a href="/user">Bienvenido {{user.first_name}} {{user.last_name}}</a>
+        {{else}}
+            <a href="/login">Inicia sesión aquí</a>
+        {{/if}}
+    </div>
+  
+</header>
+<main>
+    <h1>Compra exitosa</h1>
+    <h3>Código de la compra: {{code}}</h3>
+    <h3>Total: ${{amount}}</h3>
+    <h3>Fecha: ${{purchase_datetime}}</h3>
+</main>
