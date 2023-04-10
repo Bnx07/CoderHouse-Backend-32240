@@ -1,6 +1,12 @@
 <link rel="stylesheet" href="css/styles.css">
 <header>
-    <a href="/">Home</a>
+    <div>
+        <a href="/">Home</a>
+        {{#if isLogin}}
+            <a href="/chat"><i class="fa-solid fa-comment"></i></a>
+        {{/if}}
+    </div>
+    
     <h1>Products</h1>
     <div>
         {{#if isLogin}}

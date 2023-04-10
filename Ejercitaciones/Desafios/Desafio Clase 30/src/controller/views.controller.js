@@ -1,12 +1,17 @@
-import Product from "../dao/dbManagers/products.js";
-import Cart from "../dao/dbManagers/carts.js";
-const pm = new Product();
-const cm = new Cart();
+import { CartsService as cm, ProductsService as pm } from '../dao/repository/index.js';
 
 export default class ViewController {
     get = async(req, res) => {
-        const isLogin = req.user.user ? true : false;
-        const user = req.user.user;
+        let isLogin;
+        let user;
+        
+        if (!req.user) {
+            isLogin = false;
+            user = {};
+        } else {
+            isLogin = true
+            user = req.user;
+        }
     
         try {
             let {limit = 10, page = 1, query = 'none', sort} = req.query;
@@ -35,10 +40,19 @@ export default class ViewController {
     }
 
     getCart = async(req, res) => {
+        let isLogin;
+        let user;
+        
+        if (!req.user) {
+            isLogin = false;
+            user = {};
+        } else {
+            isLogin = true
+            user = req.user;
+        }
+
         let cid = req.params.cid;
         try {
-            const isLogin = req.user.user ? true : false;
-            const user = req.user.user;
             let cart = await cm.getOne(cid);
             res.render('carts', {cart, isLogin, user}); // Hacer que renderice los productos y tengas el carts/purchase
         } catch {
@@ -47,9 +61,18 @@ export default class ViewController {
     }
 
     getProduct = async(req, res) => {
+        let isLogin;
+        let user;
+        
+        if (!req.user) {
+            isLogin = false;
+            user = {};
+        } else {
+            isLogin = true
+            user = req.user;
+        }
+
         try {
-            const isLogin = req.user.user ? true : false;
-            const user = req.user.user;
             let pid = req.params.pid;
             let product = await pm.getOne(pid);
             let cartId = user.cart[0];
@@ -68,11 +91,20 @@ export default class ViewController {
     }
 
     getUser = async(req, res) => {
-        const isLogin = req.user.user ? true : false;
-        if (isLogin == false) {
+        let isLogin;
+        let user;
+        
+        if (!req.user) {
+            isLogin = false;
+            user = {};
+        } else {
+            isLogin = true
+            user = req.user;
+        }
+    
+        if (!isLogin) {
             return res.render('login');
         }
-        const user = req.user.user;
     
         let isAdmin = false;
         if (user.role == "admin") {
@@ -83,8 +115,14 @@ export default class ViewController {
     }
 
     getChat = (req, res) => {
-        let user = req.user.user;
-        console.log(user)
+        let user;
+        
+        if (!req.user) {
+            user = {};
+        } else {
+            user = req.user;
+        }
+
         res.render('chat', {user});
     }
 

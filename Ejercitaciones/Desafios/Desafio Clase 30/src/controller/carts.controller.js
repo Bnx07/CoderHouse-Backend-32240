@@ -1,10 +1,7 @@
 import {faker} from '@faker-js/faker';
-import CartManager from "../dao/dbManagers/carts.js";
-import Product from "../dao/dbManagers/products.js";
-import Ticket from "../dao/dbManagers/tickets.js";
+import { tickets as Ticket } from '../dao/factory.js';
+import { CartsService as cm, ProductsService as pm } from '../dao/repository/index.js';
 
-const cm = new CartManager();
-const pm = new Product();
 const tm = new Ticket();
 
 export default class CartController {

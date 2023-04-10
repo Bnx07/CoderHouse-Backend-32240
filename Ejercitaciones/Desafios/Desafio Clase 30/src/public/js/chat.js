@@ -4,18 +4,19 @@ const chatBox = document.getElementById('chatBox'); // No es estrictamente neces
 let user = document.getElementById("user").innerHTML
 socket.emit('authenticated', user);
 
+let userRole
+
+fetch('/api/session/current', {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json",
+    }
+}).then(info => info.json()).then(json => json.role).then(role => userRole = role);
+
 chatBox.addEventListener('keyup', event => {
     if (event.key === 'Enter') {
         if (chatBox.value.trim().length > 0) {
-            console.log("SEND")
-            let message = {message: chatBox.value};
-            fetch('/api/chat', {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(message)
-            })
+            socket.emit('message', {user: user, role: userRole, message: chatBox.value});
             chatBox.value = '';
         }
     }
@@ -23,13 +24,7 @@ chatBox.addEventListener('keyup', event => {
 
 function sendMessage() {
     if (chatBox.value.trim().length > 0) {
-        fetch('/api/chat', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(chatBox.value)
-        })
+        socket.emit('message', {user: user, role: userRole, message: chatBox.value});
         chatBox.value = '';
     }
 }

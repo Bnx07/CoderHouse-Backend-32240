@@ -1,28 +1,69 @@
-Aplicar arquitectura profesional por capas
-Aplicar patrones de diseño
-Aplicar mailing
-Aplicar variables de entorno
-Aplicar factory
-Aplicar DAO devuelto por factory
-Aplicar DTO
-Aplicar patrón repository
-Modificar ruta current para no enviar información sensible, enviar DTO del usuario
-Realizar middleware que trabaje en conjunto con la estrategia current para hacer sistema de autorización y delimitar endpoints:
-    Solo los administradores pueden crear, actualizar y eliminar productos  Si
-    Solo usuarios pueden enviar mensajes al chat 
-    Solo el usuario puede agregar productos a su carrito Si
-Crear modelo ticket con todas las formalizaciones del pago
-Aplicar ruta /:cid/purchase que revisa stock y formaliza la transaccion, crear ticket y devolver al carrito los productos que no se pudieron agregar
+Consignas del desafío:
+    Aplicar arquitectura profesional por capas
+    Aplicar patrones de diseño
+    Aplicar mailing
+    Aplicar variables de entorno
+    Aplicar factory
+    Aplicar DAO devuelto por factory
+    Aplicar DTO
+    Aplicar patrón repository
+    Modificar ruta current para no enviar información sensible, enviar DTO del usuario
+    Realizar middleware que trabaje en conjunto con la estrategia current para hacer sistema de autorización y delimitar endpoints:
+        ✓ Solo los administradores pueden crear, actualizar y eliminar productos
+        Solo usuarios pueden enviar mensajes al chat 
+        ✓ Solo el usuario puede agregar productos a su carrito
+    Crear modelo ticket con todas las formalizaciones del pago
+    Aplicar ruta /:cid/purchase que revisa stock y formaliza la transaccion, crear ticket y devolver al carrito los productos que no se pudieron agregar
 
-PARA HOY:
+Estado de las consignas:
     1   Done
     3   Done
     4   Done
     5   Done
     6   Done
     7   Done
-    8   Mismo que factory pero para memory, pero no entiendo 
+    8   Done
     9   Done
-    10  Done En chat el texto nunca es texto, no sé por qué
+    10  Done En chat el texto nunca es texto, no sé por qué (Hacer que mande mensaje y rol)
     14  Done
     15  Done
+
+Respuesta:
+    Muchas gracias Benja.
+    Por favor, que en tu package tambien aparezca nodemon.
+    Recomenacion fuerte! :: Usar un readme detallando tu proyecto, para poder entender bien lo que estariamos tratando de ayudarte y de apoyar si es necesario.
+    acordate que nosotros tratamos de darte una mirada de lo que nosotros conocemos, sin embargo puede que lo hicieras el proyecto pensando en otro concepto funcional que nosotros no nos percatemos, por lo cual te recomiendo siempre dar un detalle de lo que se encarga tu proyecto y como (sobre todo de como levantarlo y donde)
+    Ya arrancando el proyecto como ejemplo, obtengo un Unauthorized, y eso como experiencia de usuario, ya sonamos. 
+    Te dejo como guia del patron repository : https://www.youtube.com/watch?v=kWIZ_64fOC0
+    Se encuentra vacio la carpeta memory.
+    La forma de plantearlo seria pensarlo como una base que siempre contemplemos el CRUD, pero pasarle el elemento distinto a trabajar en este caso indicarle que Criterio, se podria tratabar con interfaces pero dado a que JS no funciona con eso lo podrias pensar como una clase, de la cual la puedes hacer de manera abstracta, te dejo esto de guia ademas: https://medium.com/@pererikbergman/repository-design-pattern-e28c0f3e4a30
+    He intentado por varias formas y no he logrado levantarlo correctamente
+    Me ayudarias con un readme de como analizar tu proyecto?
+    Saludos y quedo atento
+
+Modificaciones a realizar respecto a lo del profesor:
+    ✓ Instalacion de nodemon
+
+    ✓ Creacion de readme.md
+
+    ✓ Normalizar metodos de memory para que coincidan con los otros
+
+    ? Normalizar returns de memory para que coincidan con los otros
+
+    ✓ Controller no utiliza factory (Verificar)
+        ✓ Modificar factory
+        ✓ Modificar controller para usar factory
+
+    ✓ Unauthorized para index
+
+    ✓ No se subieron los archivos a memory
+
+    Informacion repository https://www.youtube.com/watch?v=kWIZ_64fOC0 https://medium.com/@pererikbergman/repository-design-pattern-e28c0f3e4a30
+        Habria que hacer que repository sea algo como 
+        async deleteById(cid) {
+            return await this.dao.deleteById(cid);
+        }
+        cosa de que después se puedan modificar los detalles sin problema
+        Añadir index.js que crea todas las instancias de las clases para exportar así
+
+    ✓ Corregir mensajes, mirar linea 27

@@ -92,6 +92,7 @@ const initPassport = () => {
     }, async(jwt_payload, done) => {
         try {
             if (!jwt_payload) {
+                console.log("Empty")
                 return done();
             } else {
                 return done(null, jwt_payload);

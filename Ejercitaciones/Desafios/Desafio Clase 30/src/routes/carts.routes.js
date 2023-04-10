@@ -1,11 +1,9 @@
 import { Router } from "express";
 import passport from "passport";
 import CartController from '../controller/carts.controller.js';
-import TicketController from "../controller/tickets.controller.js";
 import { isUser } from "../middlewares/isUser.js";
 
 const cc = new CartController();
-const tc = new TicketController();
 
 const router = Router();
 

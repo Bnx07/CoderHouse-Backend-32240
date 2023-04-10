@@ -1,4 +1,4 @@
-import MessageManager from "../dao/dbManagers/messages.js";
+import { messages as MessageManager } from '../dao/factory.js';
 import { io } from "../app.js";
 
 const mm = new MessageManager();

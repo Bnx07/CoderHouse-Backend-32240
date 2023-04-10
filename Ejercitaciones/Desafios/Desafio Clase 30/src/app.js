@@ -17,7 +17,7 @@ import messageRouter from './routes/messages.routes.js'
 import config from './config/config.js';
 import { connection } from './dao/factory.js';
 
-import Message from './dao/dbManagers/messages.js';
+import { messages as Message } from './dao/factory.js';
 
 const mm = new Message();
 
@@ -54,13 +54,17 @@ let messages = await mm.getAll();
 io.on('connection', socket => {
 
     socket.on("message", data => {
-        mm.addMessage(data);
-        messages.push(data);
-        
-        io.emit('Messages', messages);
+        if (data.user == '') return;
+
+        if (data.role == user) {
+            mm.addMessage(data);
+            messages.push(data);
+            
+            io.emit('Messages', messages);
+        }
     })
 
-    socket.on('authenticated', data => { // Funciona
+    socket.on('authenticated', data => {
         socket.broadcast.emit('newUserConnected', data);
         socket.emit('Messages', messages);
     })

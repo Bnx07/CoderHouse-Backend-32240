@@ -1,11 +1,9 @@
-import CartManager from "../dao/dbManagers/carts.js";
-import Ticket from "../dao/dbManagers/tickets.js";
-import Product from "../dao/dbManagers/products.js";
+import { tickets as Ticket } from '../dao/factory.js';
+import { CartsService as cm, ProductsService as pm } from '../dao/repository/index.js';
+
 import {faker} from '@faker-js/faker';
 
 const tm = new Ticket();
-const cm = new CartManager();
-const pm = new Product();
 
 export default class TicketController {
     get = async(req, res) => { // Funciona

@@ -1,6 +1,4 @@
-import Product from "../dao/dbManagers/products.js";
-
-const pm = new Product();
+import { ProductsService as pm } from '../dao/repository/index.js';
 
 export default class ProductController {
     get = async(req, res) => {

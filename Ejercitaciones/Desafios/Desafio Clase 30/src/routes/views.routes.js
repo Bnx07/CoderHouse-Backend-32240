@@ -1,31 +1,25 @@
 import { Router } from "express";
-import { cookieExtractor } from '../config/passport.config.js';
 import passport from "passport";
 
 import ViewController from "../controller/views.controller.js";
+import { userData } from "../middlewares/userData.js";
 
 const router = Router();
 const vc = new ViewController();
 
-router.get('/', passport.authenticate('jwt', {session: false}), vc.get);
+router.get('/', userData, vc.get);
 
-router.get('/carts/:cid', passport.authenticate('jwt', {session: false}), vc.getCart);
+router.get('/carts/:cid', userData, vc.getCart);
 
-router.get('/product/:pid', passport.authenticate('jwt', {session: false}), vc.getProduct);
+router.get('/product/:pid', userData, vc.getProduct);
 
 router.get('/register', vc.getRegister);
 
 router.get('/login', vc.getLogin);
 
-router.get('/user', passport.authenticate('jwt', {session: false}), vc.getUser);
+router.get('/user', userData, vc.getUser);
 
-router.get('/chat', passport.authenticate('jwt', {session: false}), vc.getChat);
-
-router.get('/test', (req, res) => {
-    if (!req.cookies.coderCookieToken) console.log("Hi");
-    res.send("Hi");
-    // Tengo que quitarla
-})
+router.get('/chat', userData, vc.getChat);
 
 router.get('*', vc.getAll)
 
