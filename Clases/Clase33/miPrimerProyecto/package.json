@@ -1,0 +1,13 @@
+{
+  "name": "clase33-coderhouse-test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon src/app.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
