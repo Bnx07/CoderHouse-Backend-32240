@@ -38,7 +38,7 @@ form.addEventListener('submit', event => {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops, the credentials arent valid',
-                    text: json.error || "Verify your mail and password"
+                    text: json.error || "Verify your email and password"
                 })
             }
         })

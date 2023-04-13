@@ -1,0 +1,10 @@
+Crear módulo mocking con endpoint /mockingproducts que entregue 100 productos con formato de una petición de Mongo (Sin Paginate)
+Crear customizador de errores y diccionario de errores más comunes:
+    ✓ errorCodes
+    ✓ errorHandler en app.js
+    ✓ clase customError
+    generateErrorInfo (No solo de user)
+
+Flujo de customizador de errores:
+    Ruta llama a customError y crea un error con codigo de errorCodes y causa generateErrorInfo
+    errorHandler procesa el error y hace el res.send
