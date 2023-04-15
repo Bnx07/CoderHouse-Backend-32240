@@ -34,6 +34,7 @@ const initPassport = () => {
             const {first_name, last_name, age, email, password} = req.body;
             try {
                 let user = await um.getOne({email: email});
+                console.log(user);
                 if (user != null) {
                     console.log("El usuario ya existe");
                     return done(null, false, {status: "Error", message: "El usuario ya existe"});

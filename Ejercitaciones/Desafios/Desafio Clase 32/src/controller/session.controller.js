@@ -12,9 +12,9 @@ export default class SessionController {
         res.send(dto.getCurrent(req.user.user));
     }
 
-    postRegister = async(req, res) => {
+    postRegister = async(req, res, next) => {
         try {
-            console.log(req.user);
+            try {
             await transport.sendMail({
                 from: 'benjabastan@gmail.com',
                 to: req.user.email,
@@ -24,14 +24,16 @@ export default class SessionController {
                     <h1>Bienvenido a Ecommerce Coder</h1>
                 </div>
                 `
-            })
+            });
+            } catch {}
+
             return res.status(200).send({status: "Ok", message: req.newUser});
         } catch (error) {
             next(error);
         }
     }
 
-    postLogin = async(req, res) => {
+    postLogin = async(req, res, next) => {
         try {
             const user = {
                 first_name: req.user.first_name,
@@ -48,7 +50,7 @@ export default class SessionController {
         }
     }
 
-    postLogout = async(req, res) => {
+    postLogout = async(req, res, next) => {
         try {
             res.clearCookie("coderCookieToken")
             return res.send({status: "Ok", message: "Logged out"});

@@ -2,13 +2,14 @@ import { Router } from 'express';
 import passport from 'passport';
 
 import SessionController from '../controller/session.controller.js';
+import { registerUser } from '../middlewares/createUser.js'
 
 import config from '../config/config.js';
 
 const router = Router();
 const sc = new SessionController();
 
-router.post('/register', passport.authenticate('register', {session: false, passReqToCallback: true}), sc.postRegister)
+router.post('/register', registerUser, sc.postRegister);
 
 router.post('/login', passport.authenticate('login', {session: false}), sc.postLogin)
 

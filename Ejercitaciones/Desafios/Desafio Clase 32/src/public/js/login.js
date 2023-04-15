@@ -25,8 +25,6 @@ form.addEventListener('submit', event => {
             }
         })
         .then(res => res.json()).then(json => {
-            console.log(json)
-            console.log(json.body)
             if (json.status == 'Ok') {
                 Swal.fire({
                     icon: 'success',
