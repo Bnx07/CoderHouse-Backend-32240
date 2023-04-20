@@ -1,0 +1,12 @@
+✓ Definir sistema de niveles
+✓ Implementar logger
+    ✓ Hacer loggerLevel en .env
+✓ Segun el tipo de logger debera:
+    ✓ Produccion: Loggear a partir de info
+    ✓ Desarrollo: Loggear a partir de debug en consola
+✓ Si el nivel es error o superior guardar en errors.log
+    No estoy seguro de que funcione
+  
+  Implementar logger a todos los errores
+
+  Crear ruta /loggerTest

@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubeservice
+spec:
+  selector:
+    app: kubeusers
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: LoadBalancer
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: kubedeploy
+spec:
+  replicas: 4
+  #number of replicas generated
+  selector:
+    #assigns labels to the pods for future selection
+    matchLabels:
+      app: kubeusers
+      version: v01
+  template:
+    metadata:
+      labels:
+        app: kubeusers
+        version: v01
+    spec:
+      containers:
+      - name: kubecontainer
+        image: andrea1003/userdockerhub:1.0.0
+        ports:
+        - containerPort: 80
+        env:
+            - name: MONGO_URL
+              value: mongodb+srv://CoderUser:A123456*@pruebacoder.rpvqwdz.mongodb.net/?retryWrites=true&w=majority
+        imagePullPolicy: Always
