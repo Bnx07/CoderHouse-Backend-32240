@@ -1,0 +1,14 @@
+Encontrados
+    Permite email vacio
+    Permite contraseña vacia
+    No se cifra la contraseña
+    Los emails pueden repetirse
+    Permite caracteres muy raros
+    Muestra los datos en consola
+    El id se genera mal
+
+Dichos por la profe
+    No hay controller de session (No se segregan bien las responsabilidades)
+    El puerto es estático
+    El campo contraseña no tiene los ***
+    Info de más porque el file no se usa

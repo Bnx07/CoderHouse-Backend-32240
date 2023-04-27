@@ -1,0 +1,19 @@
+Puerto estático hardcodeado
+FileSystem irrelevante de nuevo
+views.router no usa su controller
+
+Session.controller lo veo bien
+Swals siguen apareciendo como bien pero es bad request en la terminal
+No se indica si el mail está en uso, solo te podes guiar por la consola
+El campo contraseña no es **** y es texto plano
+
+En login sigue pasando lo del Swal y crashea la DB si el campo va vacio
+En caso de ir vacio redirige a user/undefined que funciona mail
+El ID del usuario aparece en la URL
+No tiene control de errores internos y crashea facil
+En la vista no se dice qué es cada cosa
+
+No verifica la cookie para ir al /profile/id
+
+Passport no está en archivo aparte
+En /profile/id muestra la contraseña hasheada

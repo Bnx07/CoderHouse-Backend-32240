@@ -1,0 +1,11 @@
+El puerto es estático
+La URL de Mongo es estática
+El views.router no tiene controlador
+En FS de Users hay funciones de más
+La conexión de Mongo crashea
+
+No se validan los datos al register y permite crear un usuario vacio
+Si verifica que ya exista el usuario mientras que no esté vacío
+El error no da detalles
+No se verifica que el mail esté correcto al registrar
+Siempre loguea
