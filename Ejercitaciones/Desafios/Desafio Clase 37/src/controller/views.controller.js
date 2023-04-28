@@ -179,9 +179,8 @@ export default class ViewController {
                 if (error) {
                     if (error instanceof jwt.TokenExpiredError) {
                         result = "EXPIRED";
-                        }
+                    }
                 } else {
-                    console.log(decoded);
                     result = decoded;
                 }
             });
@@ -192,7 +191,8 @@ export default class ViewController {
                 return res.render('recoverLanding', {hasExpired});
             }
 
-            res.render('recoverLanding');
+            console.log(token)
+            res.render('recoverLanding', {token});
         } catch (error) {
             console.log(error)
             console.log("Oh no, algo ha salido mal, diantres")

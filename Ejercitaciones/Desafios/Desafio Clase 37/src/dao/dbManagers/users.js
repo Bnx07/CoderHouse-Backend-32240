@@ -10,4 +10,9 @@ export default class userManager {
         let result = userModel.findOne(search);
         return result;
     }
+
+    editOne = async(email, user) => {
+        let result = userModel.updateOne({email}, user);
+        return result;
+    }
 }

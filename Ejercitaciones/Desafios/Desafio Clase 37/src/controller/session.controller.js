@@ -4,6 +4,9 @@ import Dto from '../dao/dto/dto.js';
 import config from '../config/config.js';
 import { transport } from '../utils/utils.js';
 import { CustomError, errorCodes, generateErrorInfo } from '../utils/errors.js';
+import { createHash } from '../utils/utils.js';
+import userManager from "../dao/dbManagers/users.js";
+const um = new userManager();
 
 const dto = new Dto;
 
@@ -90,5 +93,18 @@ export default class SessionController {
         } catch (error) {
             next(error)
         }
+    }
+
+    postRecoverPassword = async(req, res, next) => {
+        req.logger.http(`${req.method} at ${req.url} - ${new Date().toLocaleDateString()}`);
+
+        let account = req.account;
+        let password = req.password;
+
+        account.password = createHash(password);
+
+        let result = await um.editOne(account.email, account);
+
+        if (result.acknowledged) res.send({status: "Ok", message: "Contraseña cambiada"});
     }
 }

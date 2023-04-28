@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="/css/styles.css">
 <header>
+    <div style="display: none;" id="token">{{token}}</div>
     <div></div>
     <h1>Recuperar contraseña</h1>
     <div></div>
@@ -12,9 +13,11 @@
         <form id="recoverForm" class="form">
             <div class="formOrder">
                 <label>Nueva contraseña</label>
-                <input type="password" name="password">
+                <input type="password" name="password" id="passwordInput">
             </div>
             <button type="submit" class="submit">Enviar</button>
         </form>
     {{/if}}
 </main>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/recoverLanding.js"></script>
