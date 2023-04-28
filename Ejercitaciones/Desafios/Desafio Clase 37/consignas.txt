@@ -1,0 +1,19 @@
+Realizar sistema de recuperación de contraseñas
+    ✓ Verificar mails al crear cuenta
+    ✓ Link debe expirar en 1 hora
+        ✓ Si el link está expirado, ir a URL que permite generar nuevo link
+    Verificar que no recupere la contraseña a la misma
+    Cambiar para que te pida la contraseña en la segunda URL (xDnt)
+
+Nuevo rol "Premium" para usuarios
+Añadir campo owner a los productos
+    Por defecto es "Admin"
+    Debe guardar únicamente el mail del owner y solo pueden ser usuarios premium
+
+Modificar permisos de usuarios
+    Premium puede modificar o borrar productos mientras que sean suyos
+    Admin puede borrar todo
+
+Carrito no permite agregar productos cuando owner == dueño del Carrito
+
+Crear ruta /api/users/premium/:uid para cambiar rol de premium a user y viceversa

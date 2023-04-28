@@ -1,0 +1,24 @@
+<link rel="stylesheet" href="css/styles.css">
+<header>
+    <a href="/">Home</a>
+    <h1>Products (In real time)</h1>
+    <div>
+        {{#if isLogin}}
+            <a href="/user">Bienvenido {{user.first_name}} {{user.last_name}}</a>
+        {{else}}
+            <a href="/login">Inicia sesión aquí</a>
+        {{/if}}
+    </div>
+</header>
+<main>
+    <div id="productsList">
+
+    </div>
+</main>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/realTimeProducts.js"></script>
+
+<script>
+    const socket = io.connect('http:localhost:8080/', // Cambiar ubicacion si se sube a glitch.com render.com o railway.app
+    {forceNew: true})
+</script>
