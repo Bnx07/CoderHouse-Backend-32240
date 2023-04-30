@@ -1,6 +1,7 @@
 import { Router } from "express";
 import ProductController from "../controller/products.controller.js";
 import { isAdmin } from "../middlewares/isAdmin.js";
+import { userRole } from "../middlewares/userRole.js";
 
 const pc = new ProductController();
 
@@ -10,10 +11,10 @@ router.get('/', pc.get);
 
 router.get('/mockProducts', pc.getMockProducts);
 
-router.post('/', isAdmin, pc.post);
+router.post('/', userRole, pc.post);
 
-router.put('/:pid', isAdmin, pc.put);
+router.put('/:pid', userRole, pc.put);
 
-router.delete('/:pid', isAdmin, pc.delete);
+router.delete('/:pid', userRole, pc.delete);
 
 export default router;

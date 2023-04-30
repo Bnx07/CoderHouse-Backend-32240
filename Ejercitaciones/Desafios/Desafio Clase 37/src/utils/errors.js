@@ -32,6 +32,10 @@ export class generateErrorInfo {
     static unauthorized() {
         return "The user was unauthorized"
     }
+
+    static dbNotChanged() {
+        return "Database didnt register the changes";
+    }
 }
 
 /*

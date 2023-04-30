@@ -24,4 +24,6 @@ router.post('/recoverPassword', recoverPassword, sc.postRecoverPassword);
 
 router.get('/current', passport.authenticate('jwt', {session: false}), sc.getCurrent);
 
+router.post('/premium/:uid', passport.authenticate('jwt', {session: false}), sc.postSwapUserClass);
+
 export default router;

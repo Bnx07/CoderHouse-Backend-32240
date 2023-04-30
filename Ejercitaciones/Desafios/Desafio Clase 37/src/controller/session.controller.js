@@ -96,15 +96,72 @@ export default class SessionController {
     }
 
     postRecoverPassword = async(req, res, next) => {
-        req.logger.http(`${req.method} at ${req.url} - ${new Date().toLocaleDateString()}`);
+        try {
+            req.logger.http(`${req.method} at ${req.url} - ${new Date().toLocaleDateString()}`);
 
-        let account = req.account;
-        let password = req.password;
+            let account = req.account;
+            let password = req.password;
 
-        account.password = createHash(password);
+            account.password = createHash(password);
 
-        let result = await um.editOne(account.email, account);
+            let result = await um.editOne(account.email, account);
 
-        if (result.acknowledged) res.send({status: "Ok", message: "Contraseña cambiada"});
+            if (result.acknowledged) res.send({status: "Ok", message: "Contraseña cambiada"});
+        } catch(error) {
+            next(error)
+        }
+    }
+
+    postSwapUserClass = async(req, res, next) => {
+        try {
+            req.logger.http(`${req.method} at ${req.url} - ${new Date().toLocaleDateString()}`);
+
+            let reqEmail = req.user.user.email;
+
+            let email = req.params.uid;
+
+            if (reqEmail != email) CustomError.createError({ statusCode: 401, name: "Admin users cant swap roles", cause: generateErrorInfo.unauthorized(), code: 6});
+
+            let dbUser = await um.getOne({email});
+            req.logger.debug("Consegui los datos del usuario");
+            
+            let user = {
+                first_name: dbUser.first_name,
+                last_name: dbUser.last_name,
+                role: dbUser.role,
+                email: dbUser.email,
+                cart: dbUser.cart
+            }
+
+            if (dbUser.role == "admin") CustomError.createError({ statusCode: 401, name: "Admin users cant swap roles", cause: generateErrorInfo.unauthorized(), code: 6});
+            if (dbUser.role == "user") {
+                dbUser.role = "premium";
+                let result = await um.editOne(email, dbUser);
+
+                user.role = dbUser.role;
+                let print = await um.getOne({email});
+                req.logger.debug(print);
+
+                let token = jwt.sign({user}, config.jwtKey, {expiresIn: "24h"});
+                if (result.acknowledged) return res.cookie('coderCookieToken', token, {maxAge: 1000*60*24, httpOnly: true}).send({status: "Ok", message: "Rol actualizado"});
+
+                CustomError.createError({ statusCode: 500, name: "Couldn't swap roles", cause: generateErrorInfo.dbNotChanged(), code: 3});
+            }
+            if (dbUser.role == "premium") {
+                dbUser.role = "user";
+                let result = await um.editOne(email, dbUser);
+                
+                user.role = dbUser.role;
+                let print = await um.getOne({email});
+                req.logger.debug(print);
+
+                let token = jwt.sign({user}, config.jwtKey, {expiresIn: "24h"});
+                if (result.acknowledged) return res.cookie('coderCookieToken', token, {maxAge: 1000*60*24, httpOnly: true}).send({status: "Ok", message: "Rol actualizado"});
+
+                CustomError.createError({ statusCode: 500, name: "Couldn't swap roles", cause: generateErrorInfo.dbNotChanged(), code: 3});
+            }
+        } catch (error) {
+            next(error)
+        }
     }
 }

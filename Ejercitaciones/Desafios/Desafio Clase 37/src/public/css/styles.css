@@ -113,6 +113,12 @@ button {
     aspect-ratio: 1/1;
     border: 3px solid rgb(144, 206, 0);
     border-radius: 50%;
+    transition: all ease 300ms;
+}
+
+button:hover {
+    background-color: rgb(24, 24, 24);
+    color: rgb(144, 206, 0);
 }
 
 .movementDiv {
@@ -176,6 +182,25 @@ button {
 }
 
 .userData {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 3px solid rgb(144, 206, 0);
+    border-radius: 25px;
+    padding: 10px;
+    margin-top: 15px;
+    width: 230px;
+}
+
+.swapRoleButton {
+    margin-top: 10px;
+    height: 60px;
+    padding: 0 10px;
+    width: 100px;
+    border-radius: 25px;
+}
+
+.userSecondaryData {
     display: flex;
     flex-direction: column;
     gap: 10px;

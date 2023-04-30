@@ -108,6 +108,8 @@ export default class ViewController {
         let isLogin;
         let user;
         
+        req.logger.debug(`req.user: ${req.user}`)
+
         if (!req.user) {
             isLogin = false;
             user = {};
@@ -116,16 +118,24 @@ export default class ViewController {
             user = req.user;
         }
     
+        req.logger.debug(`User: ${user}`);
+
         if (!isLogin) {
             return res.render('login');
         }
     
         let isAdmin = false;
+        let isPremium = false;
         if (user.role == "admin") {
             isAdmin = true;
+        } else if (user.role == "premium") {
+            isPremium = true;
         }
     
-        res.render('user', {user, isAdmin})
+        req.logger.debug(`User email: ${user.email}`);
+        req.logger.debug(`User role: ${user.role}`);
+
+        res.render('user', {user, isAdmin, isPremium});
     }
 
     getChat = (req, res, next) => {
