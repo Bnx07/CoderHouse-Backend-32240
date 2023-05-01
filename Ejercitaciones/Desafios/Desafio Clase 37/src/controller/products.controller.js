@@ -70,11 +70,8 @@ export default class ProductController {
         res.send({status: "Ok", payload: {docs, totalDocs: 100, limit: 100, totalPages: 1, page: 1, pagingCounter: 1, hasPrevPage: false, hasNextPage: false, prevPage: null, nextPage: null}});
     }
 
-    post = async(req, res, next) => { // En principio funciona, solucionar error si los campos van vacios
+    post = async(req, res, next) => {
         req.logger.http(`${req.method} at ${req.url} - ${new Date().toLocaleDateString()}`);
-
-        console.log("Estoy en el POST :D");
-        console.log(req.user);
 
         try {
             const {title, description, code, price, stock, thumbnails} = req.body;
@@ -86,25 +83,23 @@ export default class ProductController {
                 stock,
                 thumbnails
             }
-        
+
             if (!title || !description || !code || !price || !stock) {
                 req.logger.error(`Hay datos faltantes en ${req.url}`);
                 CustomError.createError({statusCode: 404, name: "Some data is missing", cause: generateErrorInfo.getEmptyDatabase(), code: 4});
-                // return res.send({status: "error", message: "Llena todos los campos"})
             }
 
             if (req.user.user.role == "admin") newProduct.owner = 'admin';
             if (req.user.user.role == "premium") newProduct.owner = req.user.user.email;
 
-            // const result = await pm.saveProduct(newProduct);
-            let result = newProduct;
+            const result = await pm.post(newProduct);
             res.send({status: "Ok", payload: result});
         } catch(error) {
             next(error);
         }
     }
 
-    put = async(req, res, next) => { // En teoria deberia estar
+    put = async(req, res, next) => {
         req.logger.http(`${req.method} at ${req.url} - ${new Date().toLocaleDateString()}`);
 
         try {
@@ -120,7 +115,7 @@ export default class ProductController {
                 thumbnails
             }
             
-            let exists = pm.getOne(id);
+            let exists = await pm.getOne(id);
             if (!exists) {
                 CustomError.createError({statusCode: 400, name: "Product doesnt exist", cause: generateErrorInfo.idNotFound(), code: 2});
                 req.logger.error(`El product ID no es válido: ${id} en ${req.url}`);
@@ -137,13 +132,13 @@ export default class ProductController {
         }
     }
 
-    delete = async(req, res, next) => { // En teoria deberia estar
+    delete = async(req, res, next) => {
         req.logger.http(`${req.method} at ${req.url} - ${new Date().toLocaleDateString()}`);
 
         try {
             const id = req.params.pid;
     
-            let exists = pm.getOne(id);
+            let exists = await pm.getOne(id);
             if (!exists) {
                 CustomError.createError({statusCode: 400, name: "Product doesnt exist", cause: generateErrorInfo.idNotFound(), code: 2});
                 req.logger.error(`El product ID no existe: ${id} en ${req.url}`);

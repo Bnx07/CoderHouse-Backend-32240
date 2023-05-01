@@ -92,11 +92,12 @@ export default class CartController {
         }
     }
 
-    put = async(req, res) => {
+    put = async(req, res, next) => {
         req.logger.http(`${req.method} at ${req.url} - ${new Date().toLocaleDateString()}`);
 
         try {
             let cid = req.params.cid;
+            if (req.user.user.cart[0] != cid) return res.status(401).send({status: "error", message: "El carrito no pertenece al usuario"})
             let products = req.body;
         
             let cart = await cm.getOne(cid);
@@ -109,17 +110,26 @@ export default class CartController {
                 })
             }
             
-            products.forEach(async(product) => {
-                const search = (element) => element == product._id
-        
+            let isInvalid = false;
+
+            for (const product of products) {
+                const search = (element) => element == product._id;
+            
                 let valid = ids.findIndex(search);
             
                 if (valid != -1) {
                     cartProducts[valid].quantity = product.quantity;
                 } else {
+                    let fullProduct = await pm.getOne({_id: product._id});
+                    if (fullProduct.owner == req.user.user.email) {
+                        isInvalid = true;
+                        break;
+                    }
                     cartProducts.push(product);
                 }
-            })
+            }
+
+            if (isInvalid) return res.send({status: "error", message: "You cant add your products to your own cart"});
         
             cart.products = cartProducts;
             let result = await cm.put(cid, cart);

@@ -1490,3 +1490,167 @@ fatal: POST con /api/products - 30/4/2023
 error: Hay datos faltantes en /
 fatal: POST con /api/products - 30/4/2023
 error: Hay datos faltantes en /
+fatal: GET con / - 30/4/2023
+fatal: GET con /css/styles.css - 30/4/2023
+fatal: GET con /favicon.ico - 30/4/2023
+fatal: GET con /login - 30/4/2023
+fatal: GET con /css/styles.css - 30/4/2023
+fatal: GET con /js/login.js - 30/4/2023
+fatal: GET con /favicon.ico - 30/4/2023
+fatal: POST con /api/session/login - 30/4/2023
+fatal: GET con / - 30/4/2023
+fatal: GET con /css/styles.css - 30/4/2023
+fatal: GET con /favicon.ico - 30/4/2023
+fatal: GET con /product/63e1ad8676e826579da40200 - 30/4/2023
+fatal: GET con /css/styles.css - 30/4/2023
+fatal: GET con /js/product.js - 30/4/2023
+fatal: GET con /favicon.ico - 30/4/2023
+fatal: GET con / - 30/4/2023
+fatal: GET con /css/styles.css - 30/4/2023
+fatal: GET con /favicon.ico - 30/4/2023
+fatal: GET con /user - 30/4/2023
+fatal: GET con /css/styles.css - 30/4/2023
+fatal: GET con /js/logout.js - 30/4/2023
+fatal: GET con /favicon.ico - 30/4/2023
+fatal: GET con /css/styles.css - 30/4/2023
+fatal: GET con /user - 30/4/2023
+fatal: GET con /css/styles.css - 30/4/2023
+fatal: GET con /js/logout.js - 30/4/2023
+fatal: GET con /favicon.ico - 30/4/2023
+fatal: GET con / - 1/5/2023
+fatal: GET con /css/styles.css - 1/5/2023
+fatal: GET con /favicon.ico - 1/5/2023
+fatal: GET con /login - 1/5/2023
+fatal: GET con /css/styles.css - 1/5/2023
+fatal: GET con /js/login.js - 1/5/2023
+fatal: GET con /favicon.ico - 1/5/2023
+fatal: POST con /api/session/login - 1/5/2023
+fatal: GET con / - 1/5/2023
+fatal: GET con /css/styles.css - 1/5/2023
+fatal: GET con /favicon.ico - 1/5/2023
+fatal: GET con /user - 1/5/2023
+fatal: GET con /css/styles.css - 1/5/2023
+fatal: GET con /js/logout.js - 1/5/2023
+fatal: GET con /favicon.ico - 1/5/2023
+fatal: GET con /css/styles.css - 1/5/2023
+fatal: POST con /api/session/login/ - 1/5/2023
+fatal: POST con /api/products - 1/5/2023
+fatal: undefined
+fatal: POST con /api/products - 1/5/2023
+fatal: undefined
+fatal: POST con /api/products - 1/5/2023
+fatal: undefined {"body":"{\r\n    \"title\": \"Palta\",\r\n    \"description\": \"Es una palta, no aguacate\",\r\n    \"price\": 150,\r\n    \"stock\": 10,\r\n    \"code\": \"4gu4c4t3\",\r\n}","expose":true,"status":400,"statusCode":400,"type":"entity.parse.failed"}
+fatal: POST con /api/products - 1/5/2023
+fatal: undefined {"body":"{\r\n    \"title\": \"Palta\",\r\n    \"description\": \"Es una palta, no aguacate\",\r\n    \"price\": 150,\r\n    \"stock\": 10,\r\n    \"code\": \"4gu4c4t3\",\r\n}","expose":true,"status":400,"statusCode":400,"type":"entity.parse.failed"}
+fatal: POST con /api/products - 1/5/2023
+fatal: undefined {"body":"{\r\n    \"title\": \"Palta\",\r\n    \"description\": \"Es una palta, no aguacate\",\r\n    \"price\": 150,\r\n    \"stock\": 10,\r\n    \"code\": \"4gu4c4t3\",\r\n}","expose":true,"status":400,"statusCode":400,"type":"entity.parse.failed"}
+fatal: POST con /api/products - 1/5/2023
+fatal: undefined
+fatal: POST con /api/products - 1/5/2023
+fatal: undefined
+fatal: POST con /api/products - 1/5/2023
+fatal: undefined
+fatal: POST con /api/products - 1/5/2023
+fatal: undefined
+fatal: POST con /api/products - 1/5/2023
+fatal: undefined
+fatal: POST con /api/products - 1/5/2023
+fatal: undefined
+fatal: POST con /api/products - 1/5/2023
+fatal: undefined
+fatal: POST con /api/products - 1/5/2023
+fatal: GET con / - 1/5/2023
+fatal: GET con /css/styles.css - 1/5/2023
+fatal: GET con /favicon.ico - 1/5/2023
+fatal: GET con /product/63e1ad8a76e826579da40202 - 1/5/2023
+fatal: GET con /css/styles.css - 1/5/2023
+fatal: GET con /js/product.js - 1/5/2023
+fatal: GET con /favicon.ico - 1/5/2023
+fatal: PUT con /api/products/63e1ad8a76e826579da40202 - 1/5/2023
+fatal: GET con / - 1/5/2023
+fatal: GET con /css/styles.css - 1/5/2023
+fatal: GET con /favicon.ico - 1/5/2023
+fatal: GET con /product/644f4b742e4f244b9254b10c - 1/5/2023
+fatal: GET con /css/styles.css - 1/5/2023
+fatal: GET con /js/product.js - 1/5/2023
+fatal: GET con /favicon.ico - 1/5/2023
+fatal: PUT con /api/products/644f4b742e4f244b9254b10c - 1/5/2023
+fatal: PUT con /api/products/644f4b742e4f244b9254b10c - 1/5/2023
+fatal: PUT con /api/products/644f4b742e4f244b9254b10c - 1/5/2023
+fatal: PUT con /api/products/644f4b742e4f244b9254b10c - 1/5/2023
+fatal: PUT con /api/products/644f4b742e4f244b9254b10c - 1/5/2023
+fatal: PUT con /api/products/644f4b742e4f244b9254b10c - 1/5/2023
+fatal: GET con / - 1/5/2023
+fatal: GET con /css/styles.css - 1/5/2023
+fatal: GET con /favicon.ico - 1/5/2023
+fatal: GET con /product/63e1ad8276e826579da401fe - 1/5/2023
+fatal: GET con /css/styles.css - 1/5/2023
+fatal: GET con /js/product.js - 1/5/2023
+fatal: GET con /favicon.ico - 1/5/2023
+fatal: PUT con /api/products/63e1ad8276e826579da401fe - 1/5/2023
+fatal: POST con /api/session/login/ - 1/5/2023
+fatal: PUT con /api/products/63e1ad8276e826579da401fe - 1/5/2023
+fatal: GET con / - 1/5/2023
+fatal: GET con /css/styles.css - 1/5/2023
+fatal: GET con /favicon.ico - 1/5/2023
+fatal: GET con /product/644f4b742e4f244b9254b10c - 1/5/2023
+fatal: GET con /css/styles.css - 1/5/2023
+fatal: GET con /js/product.js - 1/5/2023
+fatal: GET con /favicon.ico - 1/5/2023
+fatal: PUT con /api/products/644f4b742e4f244b9254b10c - 1/5/2023
+fatal: GET con / - 1/5/2023
+fatal: GET con /css/styles.css - 1/5/2023
+fatal: GET con /favicon.ico - 1/5/2023
+fatal: GET con /product/644f4b742e4f244b9254b10c - 1/5/2023
+fatal: GET con /css/styles.css - 1/5/2023
+fatal: GET con /js/product.js - 1/5/2023
+fatal: GET con /favicon.ico - 1/5/2023
+fatal: GET con /css/styles.css - 1/5/2023
+fatal: POST con /api/session/login/ - 1/5/2023
+fatal: PUT con /api/carts/644af466dfe84905b6cf2dd9 - 1/5/2023
+fatal: PUT con /api/carts/644af466dfe84905b6cf2dd9 - 1/5/2023
+fatal: PUT con /api/carts/644af466dfe84905b6cf2dd9 - 1/5/2023
+fatal: undefined
+fatal: PUT con /api/carts/644af466dfe84905b6cf2dd9 - 1/5/2023
+fatal: undefined
+fatal: PUT con /api/carts/644af466dfe84905b6cf2dd9 - 1/5/2023
+fatal: undefined
+fatal: PUT con /api/carts/644af466dfe84905b6cf2dd9 - 1/5/2023
+fatal: undefined
+fatal: PUT con /api/carts/644af466dfe84905b6cf2dd9 - 1/5/2023
+fatal: PUT con /api/carts/644af466dfe84905b6cf2dd9 - 1/5/2023
+fatal: PUT con /api/carts/644af466dfe84905b6cf2dd9 - 1/5/2023
+fatal: PUT con /api/carts/644af466dfe84905b6cf2dd9 - 1/5/2023
+fatal: PUT con /api/carts/644af466dfe84905b6cf2dd9 - 1/5/2023
+fatal: PUT con /api/carts/644af466dfe84905b6cf2dd9 - 1/5/2023
+fatal: undefined {"code":"ERR_HTTP_HEADERS_SENT"}
+fatal: PUT con /api/carts/644af466dfe84905b6cf2dd9 - 1/5/2023
+fatal: undefined {"code":"ERR_HTTP_HEADERS_SENT"}
+fatal: PUT con /api/carts/644af466dfe84905b6cf2dd9 - 1/5/2023
+fatal: POST con /api/session/login/ - 1/5/2023
+fatal: PUT con /api/carts/644af466dfe84905b6cf2dd9 - 1/5/2023
+fatal: undefined {"code":"ERR_HTTP_HEADERS_SENT"}
+fatal: PUT con /api/carts/644af466dfe84905b6cf2dd9 - 1/5/2023
+fatal: PUT con /api/carts/644af466dfe84905b6cf2dd9 - 1/5/2023
+fatal: PUT con /api/carts/644af466dfe84905b6cf2dd9 - 1/5/2023
+fatal: PUT con /api/carts/644af466dfe84905b6cf2dd9 - 1/5/2023
+fatal: PUT con /api/carts/644af466dfe84905b6cf2dd9 - 1/5/2023
+fatal: PUT con /api/carts/644af466dfe84905b6cf2dd9 - 1/5/2023
+fatal: PUT con /api/carts/644af466dfe84905b6cf2dd9 - 1/5/2023
+fatal: PUT con /api/carts/644af466dfe84905b6cf2dd9 - 1/5/2023
+fatal: PUT con /api/carts/644af466dfe84905b6cf2dd9 - 1/5/2023
+fatal: PUT con /api/carts/644af466dfe84905b6cf2dd9 - 1/5/2023
+fatal: PUT con /api/carts/644af466dfe84905b6cf2dd9 - 1/5/2023
+fatal: PUT con /api/carts/644af466dfe84905b6cf2dd9 - 1/5/2023
+fatal: PUT con /api/carts/644af466dfe84905b6cf2dd9 - 1/5/2023
+fatal: POST con /api/products - 1/5/2023
+error: Hay datos faltantes en /
+fatal: POST con /api/products - 1/5/2023
+error: Hay datos faltantes en /
+fatal: POST con /api/products - 1/5/2023
+error: Hay datos faltantes en /
+fatal: POST con /api/products - 1/5/2023
+error: Hay datos faltantes en /
+fatal: POST con /api/products - 1/5/2023
+error: Hay datos faltantes en /
+fatal: PUT con /api/products - 1/5/2023

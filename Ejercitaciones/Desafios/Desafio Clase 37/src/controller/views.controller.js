@@ -201,11 +201,10 @@ export default class ViewController {
                 return res.render('recoverLanding', {hasExpired});
             }
 
-            console.log(token)
             res.render('recoverLanding', {token});
         } catch (error) {
-            console.log(error)
-            console.log("Oh no, algo ha salido mal, diantres")
+            req.logger.error(error);
+            res.render('error');
         }
     }
 }
