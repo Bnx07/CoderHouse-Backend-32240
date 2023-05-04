@@ -1,0 +1,61 @@
+paths:
+  /api/users:
+    get:
+      summary: Obtener los datos de los usuarios
+      tags:
+        - Users
+      responses:
+        "200":
+          description: Los usuarios se entregaron de la base de datos
+        "500": 
+          description: Error del servidor
+    post:
+      summary: Añadir los datos de los usuarios
+      tags:
+        - Users
+      responses:
+        "200":
+          description: Los usuarios se entregaron de la base de datos
+        "500": 
+          description: Error del servidor
+    put:
+      summary: Obtener los datos de los usuarios
+      tags:
+        - Users
+      responses:
+        "200":
+          description: Los usuarios se entregaron de la base de datos
+        "500": 
+          description: Error del servidor
+    delete:
+      summary: Eliminar los datos de los usuarios
+      tags:
+        - Users
+      responses:
+        "200":
+          description: Los usuarios se entregaron de la base de datos
+        "500": 
+          description: Error del servidor
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        _id: 
+          type: ObjectId
+          description: ID autogenerado
+        first_name:
+          type: String
+          description: Nombre del usuario
+        last_name:
+          type: String
+          description: Apellido del usuario
+        email:
+          type: String
+          description: Email del usuario, es único
+      example:
+        _id: ObjectId("qwer1234567")
+        first_name: Benjamin
+        last_name: Bastan
+        email: tuEmail@gmail.com

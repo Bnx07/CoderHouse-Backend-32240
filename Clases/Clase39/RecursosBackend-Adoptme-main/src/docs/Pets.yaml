@@ -1,0 +1,61 @@
+paths:
+  /api/pets:
+    get:
+      summary: Obtener los datos de las mascotas
+      tags:
+        - Pets
+      responses:
+        "200":
+          description: Las mascotas se entregaron de la base de datos
+        "500": 
+          description: Error del servidor
+    post:
+      summary: Añadir los datos de los usuarios
+      tags:
+        - Pets
+      responses:
+        "200":
+          description: Las mascotas se entregaron de la base de datos
+        "500": 
+          description: Error del servidor
+    put:
+      summary: Obtener los datos de los usuarios
+      tags:
+        - Pets
+      responses:
+        "200":
+          description: Las mascotas se entregaron de la base de datos
+        "500": 
+          description: Error del servidor
+    delete:
+      summary: Eliminar los datos de los usuarios
+      tags:
+        - Pets
+      responses:
+        "200":
+          description: Las mascotas se entregaron de la base de datos
+        "500": 
+          description: Error del servidor
+
+components:
+  schemas:
+    Pets:
+      type: object
+      properties:
+        _id: 
+          type: ObjectId
+          description: ID autogenerado
+        name:
+          type: String
+          description: Nombre de la mascota
+        age:
+          type: Number
+          description: Edad de la mascota
+        species:
+          type: String
+          description: Especie de la mascota
+      example:
+        _id: ObjectId("qwer1234567")
+        name: Emma
+        age: 6
+        species: Perro
