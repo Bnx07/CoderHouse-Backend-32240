@@ -1,0 +1,217 @@
+* {
+    margin: 0;
+    padding: 0;
+    color: rgb(255, 255, 255);
+}
+
+header {
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10%;
+    background-color: rgb(63, 63, 63);
+}
+
+header a {
+    text-decoration: none;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(135deg, rgb(0, 0, 0), rgb(43, 43, 43));
+    height: 95vh;
+    overflow-y: scroll;
+}
+
+h1 {
+    margin: 20px;
+    font-size: xx-large;
+    text-decoration: underline;
+    text-decoration-color: rgb(144, 206, 0);
+    text-decoration-thickness: 2px;
+}
+
+#productsList {
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.product {
+    width: 230px;
+    border: 3px solid rgb(144, 206, 0);
+    border-radius: 10px;
+    background-color: rgb(41, 41, 41);
+    padding: 5px;
+    text-decoration: none;
+}
+
+.product img {
+    background: linear-gradient(rgb(17, 17, 17), rgb(41, 41, 41));
+    margin-bottom: 10px;
+}
+
+#chatZone {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    padding: 10px 0 0 10px;
+}
+
+#messageZone {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    position: absolute;
+    bottom: 0px;
+    background-color: black;
+    border-top: 3px solid rgb(144, 206, 0);
+    padding: 5px 0;
+    gap: 20px;
+}
+
+#messageZone input {
+    width: 90%;
+    color: black;
+    padding: 5px;
+    background-color: rgb(158, 158, 158);
+    outline: none;
+}
+
+.message {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    max-width: 60%;
+    overflow: hidden;
+    flex-wrap: wrap;
+    border: 3px solid rgb(144, 206, 0);
+    border-radius: 10px;
+    padding: 5px;
+    margin-bottom: 10px;
+    background-color: rgb(58, 58, 58);
+}
+
+.user {
+    font-size: 12px;
+}
+
+.fa-solid {
+    margin-right: 15px;
+}
+
+button {
+    background-color: rgb(41, 41, 41);
+    padding: 5px;
+    aspect-ratio: 1/1;
+    border: 3px solid rgb(144, 206, 0);
+    border-radius: 50%;
+    transition: all ease 300ms;
+}
+
+button:hover {
+    background-color: rgb(24, 24, 24);
+    color: rgb(144, 206, 0);
+}
+
+.movementDiv {
+    margin-top: 30px;
+    display: grid;
+    width: 20%;
+    grid-template-columns: 90px 30px 90px;
+    column-gap: 20%;
+    grid-template-areas: "prev number next";
+}
+
+.movementLink {
+    height: fit-content;
+    padding: 10px;
+    border: 3px solid rgb(114, 163, 0);
+    background-color: rgb(63, 63, 63);
+    border-radius: 25px;
+    text-decoration: none;
+}
+
+.simpleBorder {
+    display: flex;
+    justify-content: center;
+    width: 30px;
+    border: 3px solid rgb(114, 163, 0);
+    background-color: rgb(63, 63, 63);
+    border-radius: 25px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    gap: 10px;
+    padding: 15px;
+    border: 3px solid rgb(144, 206, 0);
+    border-radius: 25px;
+}
+
+.form input {
+    padding: 5px 10px;
+    color: black;
+    outline: none;
+    border-radius: 25px;
+}
+
+.submit {
+    height: 30px;
+    border-radius: 25px;
+}
+
+.formOrder {
+    display: grid;
+    grid-template-columns: 40% 50%;
+    column-gap: 10%;
+    row-gap: 10px;
+}
+
+.switch {
+    margin-top: 10px;
+}
+
+.userData {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 3px solid rgb(144, 206, 0);
+    border-radius: 25px;
+    padding: 10px;
+    margin-top: 15px;
+    width: 230px;
+}
+
+.swapRoleButton {
+    margin-top: 10px;
+    height: 60px;
+    padding: 0 10px;
+    width: 100px;
+    border-radius: 25px;
+}
+
+.userSecondaryData {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 3px solid rgb(144, 206, 0);
+    border-radius: 25px;
+    padding: 10px;
+    margin-top: 15px;
+}
+
+.group {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid rgb(114, 163, 0);
+}

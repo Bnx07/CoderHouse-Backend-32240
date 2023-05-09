@@ -1,0 +1,10 @@
+Faltaria pulir el tema de las devoluciones y parametros
+
+content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/User'   # Reference to an object
+        example: 
+          # Properties of the referenced object
+          id: 10
+          name: Jessica Smith
