@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="/css/styles.css">
+<header>
+    <a href="/">Home</a>
+    <h1>{{user.first_name}} {{user.last_name}}</h1>
+    <div></div>
+</header>
+<main>
+    <div class="userData">
+        <div class="group"><p style="grid-area: type1;">First name: </p>{{user.first_name}}</div>
+        <div class="group"><p style="grid-area: type2;">Last name: </p>{{user.last_name}}</div>
+        <div class="group"><p style="grid-area: type3;">Email: </p><p id="email">{{user.email}}</p></div>
+        <div class="group"><p style="grid-area: type4;">Rol: </p>{{user.role}}</div>
+    </div>
+
+    {{#if isAdmin}}
+        <div class="userData">
+            <p>Tu rol es administrador</p>
+        </div>
+    {{else}}
+        <button class="swapRoleButton" onclick="swapRole()">Cambia a {{#if isPremium}}usuario corriente{{else}}usuario premium{{/if}}</button>
+    {{/if}}
+
+    <a target="_blank" href="/api/session/current" class="userSecondaryData" style="text-decoration: none;">Más información</a>
+    <button class="submit" onclick="closeSession()" style="height: 30px; width: 100px; margin-top: 10px">Cerrar sesión</button>
+</main>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="./js/logout.js"></script>

@@ -1,0 +1,4 @@
+Agregar tests a 3 rutas de los routers:
+    products
+    carts
+    sessions
