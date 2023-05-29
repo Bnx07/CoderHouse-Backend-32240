@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="css/styles.css">
+<header>
+    <a href="/">Home</a>
+    <h1>CoderChat</h1>
+    <div>Tu email es <span id="user">{{user.email}}</span></div>
+</header>
+<main>
+    <div id="chatZone">
+    </div>
+    <div id="messageZone">
+        <input type="text" id="chatBox">
+        <button onclick="sendMessage()">|></button>
+    </div>
+</main>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/chat.js"></script>

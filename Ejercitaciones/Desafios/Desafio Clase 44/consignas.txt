@@ -1,0 +1,25 @@
+✔ Mover ruta /api/users/premium/:uid a router de session
+
+✔ Añadir propiedad documents al modelo de usuarios, este debe ser array de objetos name, reference
+
+✔ Añadir propiedad last_connection al modelo de usuarios
+
+Crear POST /api/users/:uid/documents que permita subir uno o muchos archivos:
+    Si se sube una imagen de perfil debe guardarse en la carpeta profiles
+    Si se sube una imagen de un producto, debe guardarse en la carpeta products
+    Si se sube un document, debe guardarse en la carpeta documents
+
+    Funcionamiento: Validacion documentos > Validacion de usuario > Multer para guardar archivos > Modificacion datos de usuario
+
+Modificar /api/users/premium/:uid para que solo permita actualizar al usuario si ya ha cargado los documentos requeridos:
+    Documentos necesarios:
+        Identificacion
+        Comprobante de domicilio
+        Comprobante de estado de cuenta
+    Si no se han terminado de cargar los datos, tirar error (Falta x documento, no puedes pasarte a premium)
+
+Cosas a incluir:
+    Ver foto de perfil del usuario
+    Anadir link a documentos del usuario
+    Anadir vista para crear producto
+    
