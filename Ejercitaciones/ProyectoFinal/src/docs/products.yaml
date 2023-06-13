@@ -1,0 +1,101 @@
+paths:
+  /api/products:
+    get:
+      summary: Obteniene todos los productos que cumplan con la query
+      tags:
+        - Products
+      responses:
+        "200":
+          description: Los productos se entregaron de la base de datos
+        "500": 
+          description: Error del servidor
+    post:
+      summary: Crea un producto
+      tags:
+        - Products
+      responses:
+        "200":
+          description: El producto fue creado exitosamente
+        "404":
+          description: Algunos datos obligatorios no fueron proporcionados
+        "500": 
+          description: Error del servidor
+  /api/products/:pid:
+    put:
+      summary: Modifica el producto proporcionado
+      tags:
+        - Products
+      responses:
+        "200":
+          description: El producto fue modificado exitosamente
+        "400":
+          description: El producto no existe
+        "401":
+          description: El producto no pertenece al usuario
+        "500": 
+          description: Error del servidor
+    delete:
+      summary: Elimina el producto proporcionado
+      tags:
+        - Products
+      responses:
+        "200":
+          description: El producto fue eliminado exitosamente
+        "400":
+          description: El producto no existe
+        "401":
+          description: El producto no es del usuario que trata de eliminarlo
+        "500": 
+          description: Error del servidor
+  /api/products/mockProducts:
+    get:
+      summary: Devuelve 100 productos ficticios
+      tags:
+        - Products
+      responses:
+        "200":
+          description: Los productos se enviaron exitosamente
+        "500": 
+          description: Error del servidor
+
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        _id: 
+          type: ObjectId
+          description: ID autogenerado
+        title:
+          type: String
+          description: Titulo del producto
+        description:
+          type: String
+          description: Descripcion del usuario
+        code:
+          type: String
+          description: Código del producto generado por el usuario
+        price:
+          type: Number
+          description: Precio por unidad del usuario
+        stock:
+          type: Number
+          description: Cantidad de productos disponibles para la venta
+        thumbnails:
+          type: Array
+          description: Arreglo de ids de carritos
+          items:
+            type: String
+            description: URL de la imagen del producto
+        owner:
+          type: String
+          description: Usuario dueño del producto
+      example:
+        _id: ObjectId(1q2e5r4g7y8)
+        title: Papa
+        description: Tubérculo proveniente de América
+        code: c1-p4p4
+        price: 45
+        stock: 100
+        thumbnails: []
+        owner: Admin

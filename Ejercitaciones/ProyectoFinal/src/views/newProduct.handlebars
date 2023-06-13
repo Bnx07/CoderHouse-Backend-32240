@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="/css/styles.css">
+<header>
+    <div class="headerDiv">
+        <a href="/">Home</a>
+    </div>
+    <h1>Nuevo producto</h1>
+    <div class="headerDiv toRight"></div>
+</header>
+<main>
+    <form action="" class="form" id="createProduct" enctype="multipart/form-data">
+        <div class="formOrder">
+            <h3>Nuevo producto</h3>
+            <br>
+
+            <p class="formText">Imagen</p>
+            <input type="file" name="image" id="">
+
+            <p class="formText">Nombre: </p>
+            <input type="text" name="title" id="">
+
+            <p class="formText">Descripcion: </p>
+            <input type="text" name="description" id="">
+
+            <p class="formText">Código: </p>
+            <input type="text" name="code" id="">
+
+            <p class="formText">Precio: </p>
+            <input type="number" name="price" id="">
+
+            <p class="formText">Stock: </p>
+            <input type="number" name="stock" id="">
+        </div>
+        <button class="submit">Crear producto</button>
+    </form>
+</main>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/newProduct.js"></script>

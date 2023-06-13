@@ -1,0 +1,38 @@
+<link rel="stylesheet" href="css/styles.css">
+<header>
+    <a href="/" class="headerDiv">Home</a>
+    <h1>Documentos de usuario</h1>
+    <div class="headerDiv toRight">
+        {{#if isLogin}}
+            <a href="/carts/{{user.cart}}"><i class="fa-solid fa-cart-shopping" style="color: white"></i></a>
+            <a href="/user">Bienvenido {{user.first_name}} {{user.last_name}}</a>
+        {{else}}
+            <a href="/login">Inicia sesión aquí</a>
+        {{/if}}
+    </div>
+  
+</header>
+<main>
+    {{#if isLogin}}
+        <h1>Ahora has iniciado sesion con <span id="userEmail">{{user.email}}</span></h1>
+        <form class="form" id="postDocumentsForm" enctype="multipart/form-data">
+            <div class="formOrder">
+
+                <h3>Documentos de usuario</h3><br>
+                <p class="formText">Identificacion</p><input type="file" name="identification" id="" style="color: white;">
+                <p class="formText">Comprobante de domicilio</p><input type="file" name="location" id="" style="color: white;">
+                <p class="formText">Comprobante de estado de cuenta</p><input type="file" name="accState" id="" style="color: white;">
+                
+                <h3>Imagenes de utilidad</h3><br>
+                <p class="formText">Imagen de perfil</p><input type="file" name="thumbnail" id="" style="color: white;">
+                <p class="formText">Imagen de producto</p><input type="file" name="image" id="" style="color: white;">
+            </div>
+            
+            <button type="submit" class="submit">Subir archivos</button>
+        </form>
+    {{else}}
+        <a href="/login">Necesitas iniciar sesión para poder subir tus documentos</a>
+    {{/if}}
+</main>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/documents.js"></script>

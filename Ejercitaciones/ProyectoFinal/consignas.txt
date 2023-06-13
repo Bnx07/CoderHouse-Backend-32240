@@ -1,0 +1,21 @@
+Obligatorio:
+    ✔ GET /api/users devuelve los datos principales de los usuarios
+    ✔ DELETE /api/users borra usuarios con 2 dias de inactividad        // Hacer mas pruebas
+        Envia correos
+        Requiere privilegios de administrador
+    ✔ Crear view para visualizar, modificar el rol y eliminar un usuario
+        Requiere privilegios de administrador
+    ✔ Modificar endpoint para borrar producto para que si es de un usuario premium envie mail informandolo
+    ✔ Crear vista de creacion de productos, habria que ponerle un toggle para subir imagenes o poner el nombre de una que ya existe
+    • Desplegar para entregar
+    ✔ Arreglar pasar a premium
+    ✔ Arreglar put de productos a carrito
+
+Opcional:
+    • Crear pasarela de pago
+    • Añadir variables de entorno como la del nodemailer, etc
+    • Añadir imagen default a los productos
+    • Hacer que el comprar envie un mail
+    • Añadir imagen al perfil
+    • Aplicar bien el diseño de plantillas (Header con todas las cosas)
+    • Añadir una variable "missingStock" a la ruta de comprar productos para diferenciar el error de un algo fallo

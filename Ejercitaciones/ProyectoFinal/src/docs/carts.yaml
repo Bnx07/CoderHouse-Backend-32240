@@ -1,0 +1,186 @@
+paths:
+  /api/carts:
+    get:
+      summary: Obteniene todos los carritos
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: Los carritos se entregaron de la base de datos
+        "500": 
+          description: Error del servidor
+    post:
+      summary: Crea un carrito
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: El carrito fue creado exitosamente
+        "500": 
+          description: Error del servidor
+  /api/carts/:cid:
+    get:
+      summary: Obtiene el carrito que posee el cid
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: El carrito se entrego exitosamente
+        "400":
+          description: El cid proporcionado no es válido
+        "500":
+          description: Error del servidor
+    put:
+      parameters:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  _id: ID del producto
+                  quantity: Cantidad de dicho producto
+            example:
+              [{
+                _id: ObjectId(aE2r5T8y9hd),
+                quantity: 32
+              }]
+      summary: Añade productos al carrito proporcionado 
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: El producto se añadio al carrito exitosamente
+        "401":
+          description: El carrito no pertenece al usuario
+        "404":
+          description: El producto no se puede añadir al carrito debido a que pertenece al usuario
+        "500": 
+          description: Error del servidor
+    delete:
+      summary: Elimina el carrito proporcionado
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: El carrito fue eliminado exitosamente
+        "400":
+          description: El carrito no existe
+        "500": 
+          description: Error del servidor
+  /api/carts/:cid/product/:pid:
+    put:
+      summary: Modifica la cantidad de un producto determinado dentro de un carrito
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: La cantidad del producto se modificó exitosamente
+        "404":
+          description: El carrito no existe o el producto no existe dentro del carrito
+        "500": 
+          description: Error del servidor
+    delete:
+      summary: Elimina un producto del carrito proporcionado
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: Los usuarios se entregaron de la base de datos
+        "404":
+          description: El carrito o el producto no existen, o el producto no existe dentro del carrito
+        "500": 
+          description: Error del servidor
+  /api/carts/:cid/purchase:
+    post:
+      summary: Crea la transaccion y elimina los productos comprados del carrito
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: La transaccion se realizó exitosamente
+        "400":
+          description: No se pudo comprar ningun producto
+        "500":
+          description: Error del servidor
+
+components:
+  schemas:
+    Carts:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: ID autogenerado
+        products:
+          type: array
+          description: Arreglo de los productos del carrito
+          items:
+            type: object
+            properties:
+              _id:
+                type: ObjectId
+                description: ID del producto
+              quantity:
+                type: Number
+                description: Cantidad del producto
+      example:
+        _id: ObjectId(123dsadw312)
+        products:
+          [
+            {
+              _id: ObjectId(62ds2aQr315),
+              quantity: 2
+            },
+            {
+              _id: ObjectId(12ds2adw312),
+              quantity: 1
+            }
+          ]
+    User:
+      type: object
+      properties:
+        _id: 
+          type: ObjectId
+          description: ID autogenerado
+        first_name:
+          type: String
+          description: Nombre del usuario
+        last_name:
+          type: String
+          description: Apellido del usuario
+        email:
+          type: String
+          description: Email del usuario, es único
+        age:
+          type: Number
+          description: Edad del usuario
+        password:
+          type: String
+          description: Hash de la contraseña del usuario
+        cart:
+          type: Array
+          description: Arreglo de ids de carritos
+          items:
+            type: String
+        role:
+          type: String
+          description: Rol del usuario
+          enum:
+            - admin
+            - user
+            - premium
+
+      example:
+        _id: ObjectId("qwer1234567")
+        first_name: Benjamin
+        last_name: Bastan
+        email: tuEmail@gmail.com
+        password: $2b$10$tk3IVsPlwEbhRvQYxR9lbuO9PBne0pddeeN3uIC6Is4u8F8OArS3W
+        cart: [
+            {
+              "$oid": "640f8fe4e1eac937e6bbfeb0"
+            }
+          ]
+        role: premium

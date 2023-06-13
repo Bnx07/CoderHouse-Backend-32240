@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="../css/styles.css">
+<header>
+  <a href="/" class="headerDiv">Home</a>
+  <h1>Cart ID <span id="cid">{{cart._id}}</span></h1>
+  <div class="headerDiv toRight">
+    {{#if isLogin}}
+      <a href="/user">Bienvenido {{user.first_name}} {{user.last_name}}</a>
+    {{else}}
+      <a href="/login">Inicia sesión aquí</a>
+    {{/if}}
+  </div>
+  
+</header>
+<main>
+    <div id="productsList">
+        {{#each cart.products}}
+            <div class="product">
+                <div style="display: grid; place-content: center;">
+                    <img src="{{_id.thumbnails}}" alt="{{_id.title}}" style="aspect-ratio: 1; width: 200px; object-fit: cover;"/>
+                </div>
+                <h2>Title: {{_id.title}}</h2>
+                <h2>Price: ${{_id.price}}</h2>
+                <p>{{_id.description}}</p>
+                <p>{{_id.quantity}}</p>
+            </div>
+        {{/each}}
+    </div>
+    <form action="" method="post" id="buyProducts">
+        <button type="submit">Comprar productos</button>
+    </form>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/js/carts.js"></script>
+</main>
