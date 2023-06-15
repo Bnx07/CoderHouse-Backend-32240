@@ -49,7 +49,7 @@ export default class ViewController {
             let hasNextPage = products.hasNextPage, hasPrevPage = products.hasPrevPage;
             products = products.docs;
         
-            res.render('home', {title: "Home" ,products, hasNextPage, hasPrevPage, nextLink, prevLink, page, isLogin, user, createProd, viewUsers});
+            res.render('home', {title: "Home", products, hasNextPage, hasPrevPage, nextLink, prevLink, page, isLogin, user, createProd, viewUsers});
         } catch(error) {
             req.logger.debug(error);
             next(error);

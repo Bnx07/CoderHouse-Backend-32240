@@ -1,0 +1,25 @@
+DISEÑO
+
+Todo:
+    Normalizar al español
+
+Header:
+    Aplicar que se vea el logo del usuario
+
+SweetAlert:
+    Personalizar
+
+Cart y usuario:
+    Cambiar diseño para ocupar más espacio
+
+*:
+    Cambiar tipografía default
+
+.product:
+    border: rgb(133,133,133) // A lo mejor hacer sombreado
+    Hacer mas ancho (400px por ejemplo)
+    Quitar border-radius
+    Reordenar display de cosas
+
+main: 
+    background: linear-gradient(0deg, rgb(165 165 165), rgb(63 63 63));

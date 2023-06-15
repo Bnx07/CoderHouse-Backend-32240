@@ -86,7 +86,7 @@ io.on('connection', socket => {
     socket.on("message", data => {
         if (data.user == '') return;
 
-        if (data.role == user) {
+        if (data.role == data.user) {
             mm.addMessage(data);
             messages.push(data);
             
