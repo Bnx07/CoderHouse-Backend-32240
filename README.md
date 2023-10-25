@@ -1,20 +1,52 @@
 # CoderHouse-Backend-32240
 
 Repository of all the files and challenges made during my Backend's course from CoderHouse
-## Autor
+## Author
 
 - [@Bnx07](https://github.com/Bnx07)
 
-
 ## Repository's structure
+
+```markdown
+├───Clases
+│   ├───Clase01
+│   ├───Clase02
+│   ├───Clase03
+│   ├───Clase04
+│   ├───Clase05
+│   ├───ETC
+├───Ejercitaciones
+│   ├───Desafios
+│   │   ├───Desafio-1
+│   │   ├───Desafio-2
+│   │   ├───Desafio-Clase-06
+│   │   ├───Desafio-Clase-09
+│   │   ├───Desafio-Clase-11
+│   │   ├───Desafio-Clase-15
+│   │   ├───Desafio-Clase-17
+│   │   ├───Desafio-Clase-19
+│   │   ├───Desafio-Clase-21
+│   │   ├───Desafio-Clase-24
+│   │   ├───Desafio-Clase-27
+│   │   ├───Desafio-Clase-30
+│   │   ├───Desafio-Clase-32
+│   │   ├───Desafio-Clase-34
+│   │   ├───Desafio-Clase-37
+│   │   ├───Desafio-Clase-39
+│   │   ├───Desafio-Clase-41
+│   │   └───Desafio-Clase-44
+│   ├───Hands On Lab
+│   ├───ProyectoFinal
+├───Extra
+├───Proyectos
+│   └───Clase05
+```
 
 ## Ecommerce Web App
 
  - [Repository of app itself](https://github.com/Bnx07/ECommerce-32240)
 
  - [Code with examples](https://github.com/Bnx07/CoderHouse-Backend-32240/tree/main/Ejercitaciones/ProyectoFinal)
-
-
 
 ## Installation
 
@@ -46,7 +78,6 @@ To run this project run
   npm install
   npm run dev
 ```
-
 
 ## API Reference
 
